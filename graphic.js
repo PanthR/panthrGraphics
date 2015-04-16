@@ -69,6 +69,8 @@ define(function(require) {
       }
    };
 
+   Graphic.SVG = require('./app/svg');
+
    return Graphic.set(factoryObjects);
 });
 
