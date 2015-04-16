@@ -1,13 +1,11 @@
 (function(define) {'use strict';
 define(function(require) {
 
-   var Point, Component, Transform, Scale, mixin, newClass;
+   var Point, Component, mixin, newClass;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
    Component = require('./component');
-   Transform = require('./transform');
-   Scale = require('./scale');
 
    /**
     * Point Properties:
