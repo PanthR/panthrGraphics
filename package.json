@@ -1,0 +1,59 @@
+{
+   "name": "panthrGraphics",
+   "version": "0.0.1",
+   "description": "Graphics Library for PanthR",
+   "main": "graphics.js",
+   "scripts": {
+      "test": "mocha --reporter=progress --recursive --require=./test/stackFixer.js",
+      "lint": "eslint .",
+      "doc": "node ./node_modules/panthrdoc/run.js .",
+      "bundle": "browserify bundlePre.js | uglifyjs -c > toypages/bundle.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/PanthR/panthrGraphics.git"
+   },
+   "keywords": [
+   "panthr",
+   "variable",
+   "dataset"
+   ],
+   "author": {
+      "name": "PanthR Team",
+      "url": "https://github.com/PanthR/"
+   },
+   "contributors": [
+      {
+         "name": "Barb Wahl",
+         "email": "wahl@hanover.edu",
+         "url": "https://github.com/bwahl"
+      },
+      {
+         "name": "Haris Skiadas",
+         "email": "skiadas@hanover.edu",
+         "url": "https://github.com/skiadas"
+      },
+      {
+         "name": "Bill Altermatt",
+         "email": "altermattw@hanover.edu",
+         "url": "https://github.com/altermattw"
+      }
+   ],
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/PanthR/panthrGraphics/issues"
+   },
+   "homepage": "https://github.com/PanthR/panthrGraphics",
+   "devDependencies": {
+      "chai": "^1.9.1",
+      "eslint": "^0.7.4",
+      "mocha": "~1.21.3",
+      "sinon": "^1.10.3",
+      "sinon-chai": "^2.5.0"
+   },
+   "dependencies": {
+      "moment": "*",
+      "handlebars": "*",
+      "browserify": "*"
+   }
+}
