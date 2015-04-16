@@ -25,6 +25,7 @@ define(function(require) {
       Path: Path,
       // Part of an ellipse
       Arc: Arc,
+      Circle: require('./app/circle'),
       // A container for objects
       Group: Group,
       // Text labels

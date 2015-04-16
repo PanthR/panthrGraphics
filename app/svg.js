@@ -10,6 +10,7 @@ define(function(require) {
       Path: require('./svg/path'),
       Arc: require('./svg/arc'),
       Group: require('./svg/group'),
+      Circle: require('./svg/circle'),
       Text: require('./svg/text')
    };
 });

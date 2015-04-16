@@ -22,5 +22,12 @@ require(["../graphic"], function(Graphic) {
    l.append({ x: 0.2, y: 0.4 });
    setTimeout(function() {
       w.set({ px: 200 }); // Should scale picture. Doesn't yet
+      l.append({ x: 0.5, y: 0.5 });
    }, 2000);
+   w.el.onclick = function(ev) {
+      var c = Graphic.Circle.new();
+      c.parent(w);
+      w.el.appendChild(c.el);
+      c.set(w.transform.inverse().pair({ x: ev.clientX, y: ev.clientY }));
+   }
 });
