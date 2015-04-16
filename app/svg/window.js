@@ -18,11 +18,11 @@ define(function(require) {
       },
       attr: function(attrs) {
          mixin(this, attrs);
-         if (attrs.hasOwnProperty("px")) {
-            this.el.setAttribute("width", attrs.px);
+         if (attrs.hasOwnProperty('px')) {
+            this.el.setAttribute('width', attrs.px);
          }
-         if (attrs.hasOwnProperty("py")) {
-            this.el.setAttribute("height", attrs.py);
+         if (attrs.hasOwnProperty('py')) {
+            this.el.setAttribute('height', attrs.py);
          }
       }
    });

@@ -9,9 +9,9 @@ define(function(require) {
 
    SVGSegment = newClass(function init() {}, Segment);
 
-   function pointToString(p) { return p.x + "," + p.y; }
+   function pointToString(p) { return p.x + ',' + p.y; }
    function pointsToString(ps) {
-      return ps.map(pointToString).join(" ");
+      return ps.map(pointToString).join(' ');
    }
 
    mixin(SVGSegment, {
@@ -23,12 +23,12 @@ define(function(require) {
          this.points = [];
       },
       updatePoints: function() {
-         this.el.setAttribute("points", pointsToString(
+         this.el.setAttribute('points', pointsToString(
             (this.points || []).map(this.toPhysicalCoords.bind(this))
          ));
       },
       update: function() {
-         this.el.setAttribute("style", "fill:lime;stroke:purple;stroke-width:1");
+         this.el.setAttribute('style', 'fill:lime;stroke:purple;stroke-width:1');
       }
    });
 
