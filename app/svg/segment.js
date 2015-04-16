@@ -28,7 +28,7 @@ define(function(require) {
          ));
       },
       update: function() {
-         this.el.setAttribute('style', 'fill:lime;stroke:purple;stroke-width:1');
+         this.el.setAttribute('style', 'fill:none;stroke:purple;stroke-width:1');
       }
    });
 
