@@ -43,9 +43,19 @@ define(function(require) {
          // Only Composites have transforms
          return this.parent().fromPhysicalCoords(coords);
       },
-      // Get or set the parent
+      /*
+       * Get or set the parent.
+       * If the node has a parent, and we are trying to set it to
+       * a new parent (i.e. not to null), then call "remove" on the
+       * old parent.
+       */
       parent: function(newParent) {
          if (arguments.length === 0) { return this._parent; }
+
+         if (this._parent != null && newParent != null) {
+            this._parent.remove(this);
+         }
+
          this._parent = newParent || null;
       },
       set: function(attrs) {

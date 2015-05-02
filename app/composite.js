@@ -12,7 +12,7 @@ define(function(require) {
 
    /**
     * Properties:
-    * - `_children`: private. List of contained components.
+    * - `children`: private. List of contained components.
     * - `transform`: A transformation (default identity).
     *     Coordinates of children pass through this transform to
     *     turn into coordinates compared to the parent.
@@ -21,9 +21,23 @@ define(function(require) {
     *
     */
    Composite = newClass(function init() {
+      if (!this.children) { this.children = []; }
       this.transform = Transform.ident();
    }, Component);
-   mixin(Composite.prototype, Collection.prototype, {
+
+   mixin(Composite.prototype, Collection, {
+      insertAt: function(i, node) {
+         console.log('insert!', i, node, this);
+         Collection.insertAt.call(this, i, node);
+         node.parent(this);
+         return this;
+      },
+      remove: function(node) {
+         console.log('remove!', i, node, this);
+         Collection.remove.call(this, node);
+         node.parent(null);
+         return this;
+      },
       toPhysicalCoords: function(coords) {
          // null indicates we reached the window level
          if (this.parent() == null) {
