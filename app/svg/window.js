@@ -1,18 +1,20 @@
 (function(define) {'use strict';
 define(function(require) {
-   var mixin, newClass, makeSVG, Window, SVGWindow;
+   var mixin, newClass, makeSVG, Window, SVGWindow, SVGComposite;
 
    mixin = require('../../lib/mixin');
    newClass = require('../../lib/newClass');
    Window = require('../window');
    makeSVG = require('./makesvg');
+   SVGComposite = require('./composite');
 
-   SVGWindow = newClass(function init() {}, Window);
+   SVGWindow = newClass(function init() {
+   }, Window);
 
    mixin(SVGWindow, {
       defaults: Window.defaults
    });
-   mixin(SVGWindow.prototype, {
+   mixin(SVGWindow.prototype, SVGComposite, {
       initialize: function() {
          this.el = makeSVG('svg');
       },

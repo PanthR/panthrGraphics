@@ -33,7 +33,7 @@ define(function(require) {
          return this;
       },
       remove: function(node) {
-         console.log('remove!', i, node, this);
+         console.log('remove!', node, this);
          Collection.remove.call(this, node);
          node.parent(null);
          return this;
