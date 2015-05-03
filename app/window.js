@@ -33,6 +33,7 @@ define(function(require) {
             Scale.range(this.xmin, this.xmax, 0, this.px),
             Scale.range(this.ymin, this.ymax, 0, this.py)
          );
+         return Composite.prototype.update.call(this);
       }
    });
 
