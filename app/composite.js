@@ -38,6 +38,12 @@ define(function(require) {
          node.parent(null);
          return this;
       },
+      update: function() {
+         (this.children || []).forEach(function(child) {
+            child.update();
+         });
+         return this;
+      },
       toPhysicalCoords: function(coords) {
          // null indicates we reached the window level
          if (this.parent() == null) {
