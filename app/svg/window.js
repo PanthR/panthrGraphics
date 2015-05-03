@@ -15,7 +15,7 @@ define(function(require) {
       defaults: Window.defaults
    });
    mixin(SVGWindow.prototype, SVGComposite, {
-      initialize: function() {
+      prepare: function() {
          this.el = makeSVG('svg');
       },
       attr: function(attrs) {

@@ -17,11 +17,15 @@ define(function(require) {
     *
     */
    Component = newClass(function init(attrs) {
-      if (this.initialize) { this.initialize(); }
+      this.prepare();
       attrs = mixin({}, this.class.defaults, attrs);
       this.set(attrs);
    });
    mixin(Component.prototype, {
+      // Subclasses should use this to initialize components
+      // It will run once the component is created but before
+      // its attributes have been initialized
+      prepare: function() {},
       // Returns a point's physical coordinates
       // as determined by the transforms
       // of the component's parents.

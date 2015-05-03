@@ -18,7 +18,7 @@ define(function(require) {
       defaults: Segment.defaults
    });
    mixin(SVGSegment.prototype, {
-      initialize: function() {
+      prepare: function() {
          this.el = makeSVG('polyline');
          this.el.setAttribute('style', 'fill:none;stroke:purple;stroke-width:1');
          this.points = [];
