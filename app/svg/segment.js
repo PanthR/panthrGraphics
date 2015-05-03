@@ -20,6 +20,7 @@ define(function(require) {
    mixin(SVGSegment.prototype, {
       initialize: function() {
          this.el = makeSVG('polyline');
+         this.el.setAttribute('style', 'fill:none;stroke:purple;stroke-width:1');
          this.points = [];
       },
       updatePoints: function() {
@@ -28,7 +29,7 @@ define(function(require) {
          ));
       },
       update: function() {
-         this.el.setAttribute('style', 'fill:none;stroke:purple;stroke-width:1');
+         this.updatePoints();
       }
    });
 
