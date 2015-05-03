@@ -8,8 +8,7 @@ define(function(require) {
    makeSVG = require('./makesvg');
    SVGComposite = require('./composite');
 
-   SVGWindow = newClass(function init() {
-   }, Window);
+   SVGWindow = newClass(function init() {}, Window);
 
    mixin(SVGWindow, {
       defaults: Window.defaults

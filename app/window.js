@@ -17,9 +17,8 @@ define(function(require) {
     * @classdesc Represents a graphical window (e.g. svg/canvas element)
     *
     */
-   Window = newClass(function init() {
-       this.update();
-   }, Composite);
+   Window = newClass(function init() {}, Composite);
+
    mixin(Window, {
       defaults: {
          px: 100, py: 100, // Physical dimensions of window (in pixels)

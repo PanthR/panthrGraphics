@@ -27,14 +27,12 @@ define(function(require) {
 
    mixin(Composite.prototype, Collection, {
       insertAt: function(i, node) {
-         console.log('insert!', i, node, this);
          Collection.insertAt.call(this, i, node);
          node.parent(this);
          node.update();
          return this;
       },
       remove: function(node) {
-         console.log('remove!', node, this);
          Collection.remove.call(this, node);
          node.parent(null);
          return this;
