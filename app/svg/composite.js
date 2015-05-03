@@ -28,7 +28,7 @@ define(function(require) {
       // Carries out the extraction from the DOM
       remove: function(node) {
          Composite.prototype.remove.call(this, node);
-         node.el.remove();
+         this.el.removeChild(node.el);
          return this;
       }
    };
