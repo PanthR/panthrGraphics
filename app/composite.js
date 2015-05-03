@@ -30,6 +30,7 @@ define(function(require) {
          console.log('insert!', i, node, this);
          Collection.insertAt.call(this, i, node);
          node.parent(this);
+         node.update();
          return this;
       },
       remove: function(node) {
