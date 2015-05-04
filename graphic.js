@@ -8,7 +8,7 @@ define(function(require) {
    var factoryObjects, // Abstract implementations
        Graphic,        // Container for all Graphic related work
        // Abstract classes. Factories need to provide implementation.
-       Line, Path, Text,
+       Line, Lines, Path, Text,
        Rect, Curve, Arc, Group, Color;
 
    // The factory objects to be included
@@ -17,6 +17,8 @@ define(function(require) {
    factoryObjects = {
       // A new window to draw in
       Window: require('./app/window'),
+      // A single line segment
+      // TODO uncomment this. Line: require('./app/line'),
       // A contiguous sequence of one or more line segments
       Polyline: require('./app/polyline'),
       // A (possibly filled) rectangle
@@ -49,6 +51,8 @@ define(function(require) {
    // Derived Objects that do not need independent implementation
    // Sequence of "statistical" points.
    Graphic.Points = require('./app/point')(Graphic);
+   // Sequence of line segments
+   Graphic.Lines = Lines;
    // "Mathematical" curve, given an "function" "f".
    // Piecewise smooth?
    Graphic.Curve = Curve;
