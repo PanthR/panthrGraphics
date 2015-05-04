@@ -27,7 +27,7 @@ define(function(require) {
       Arc: Arc,
       Circle: require('./app/circle'),
       // A container for objects
-      Group: Group,
+      Group: require('./app/group'),
       // Text labels
       Text: Text
    };
