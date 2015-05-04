@@ -13,35 +13,71 @@ return function(Graphic) {
     * Point Properties:
     * - `coords`: The point's coordinates
     * @class Point
-    * @classdesc Represents a "statistical" Point.
-    * A "circle" by default.
+    * @classdesc Represents a sequence of "statistical" points
+    * that will be drawn the same. Using a "circle" by default.
     */
    Point = newClass(function init() {}, Component);
    mixin(Point, {
-      defaults: {
-         x: 0,
-         y: 0
-      }
+      defaults: {}
    });
    mixin(Point.prototype, {
       prepare: function() {
-         this.point = Graphic.Circle.new();
+         this.points = [];
+         this.group = Graphic.Group.new();
       },
+      /*
+       * Create a new point with type according to the settings
+       * Basically a private method. Do NOT use directly.
+       */
+      makePoint: function(o) {
+         // TODO: Later on will pick a point type here based on
+         // a pch type attribute. For now default to circle.
+         return Graphic.Circle.new(o);
+      },
+      // If the user has passed a point as part of attributes
+      // Append that point.
       attr: function(o) {
+         var point;
+         if (o.hasOwnProperty("x") && o.hasOwnProperty("y")) {
+            point = { x: o.x, y: o.y };
+            delete o.x;
+            delete o.y;
+         }
          mixin(this, o);
-         this.point.set(o);
+         this.group.set(o);
+         if (point) { this.append(point); }
          return this;
       },
       update: function() {
-         this.point.update();
+         this.group.update();
          return this;
       },
       parent: function(newParent) {
-         return this.point.parent.apply(this.point, arguments);
+         return this.group.parent.apply(this.group, arguments);
       },
       getRealization: function() {
-         return this.point.getRealization();
+         return this.group.getRealization();
+      },
+      append: function(o) {
+         return this.insertAt(this.points.length, o);
+      },
+      prepend: function(o) {
+         return this.insertAt(0, o);
+      },
+      insertAt: function(i, o) {
+         this.points.splice(i, 0, o);
+         this.group.insertAt(i, this.makePoint(o));
+         return this;
+      },
+      // get: function(i) {
+      //    return this.points[i];
+      // },
+      remove: function(i) {
+         this.points.splice(i);
+         this.group.remove(i);
+         return this;
       }
+
    });
 
    return Point;
