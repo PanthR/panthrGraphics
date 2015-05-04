@@ -86,6 +86,13 @@ define(function(require) {
       attr: function(o) {
          mixin(this, o);
       },
+      getRealization: function() {
+         // Returns the element's "realization".
+         if (!this.el) {
+            throw new Error("No realization for abstract classes");
+         }
+         return this.el;
+      },
       /*
        * Subclasses can override this method to add
        * code that should run after attribute updates

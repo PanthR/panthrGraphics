@@ -19,16 +19,17 @@ define(function(require) {
 
          // If last element, append
          if (i + 1 === this.children.length) {
-            this.el.appendChild(node.el);
+            this.el.appendChild(node.getRealization());
          } else {
-            this.el.insertBefore(node.el, this.getChild(i + 1).el);
+            this.el.insertBefore(node.getRealization(),
+                                 this.getChild(i + 1).getRealization());
          }
          return this;
       },
       // Carries out the extraction from the DOM
       remove: function(node) {
          Composite.prototype.remove.call(this, node);
-         this.el.removeChild(node.el);
+         this.el.removeChild(node.getRealization());
          return this;
       }
    };
