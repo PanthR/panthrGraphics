@@ -1,24 +1,24 @@
 (function(define) {'use strict';
 define(function(require) {
 
-   var Segment, Component, mixin, newClass;
+   var Polyline, Component, mixin, newClass;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
    Component = require('./component');
 
    /**
-    * Segment Properties:
+    * Polyline Properties:
     * - points: List of pairs of objects with x, y coordinates
-    * @class Segment
-    * @classdesc Represents sequence of segments
+    * @class Polyline
+    * @classdesc Represents contiguous sequence of segments
     *
     */
-   Segment = newClass(function init() {}, Component);
-   mixin(Segment, {
+   Polyline = newClass(function init() {}, Component);
+   mixin(Polyline, {
       defaults: { }
    });
-   mixin(Segment.prototype, {
+   mixin(Polyline.prototype, {
       initialize: function() {
          this.points = [];
       },
@@ -47,7 +47,7 @@ define(function(require) {
       updatePoints: function() {}
    });
 
-   return Segment;
+   return Polyline;
 
 });
 

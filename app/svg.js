@@ -5,7 +5,7 @@ define(function(require) {
    // graphics classes
    return {
       Window: require('./svg/window'),
-      Segment: require('./svg/segment'),
+      Polyline: require('./svg/polyline'),
       Rect: require('./svg/rect'),
       Path: require('./svg/path'),
       Arc: require('./svg/arc'),

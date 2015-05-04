@@ -17,8 +17,8 @@ define(function(require) {
    factoryObjects = {
       // A new window to draw in
       Window: require('./app/window'),
-      // A sequence of one or more line segments
-      Segment: require('./app/segment'),
+      // A contiguous sequence of one or more line segments
+      Polyline: require('./app/polyline'),
       // A (possibly filled) rectangle
       Rect: Rect,
       // A Bezier curve with a number of control points
@@ -46,10 +46,9 @@ define(function(require) {
    // 2d coordinate transformations
    Graphic.Transform = require('./app/transform');
 
-   // A geometric point, typically shown as circle
-   Graphic.Point = require('./app/point')(Graphic);
    // Derived Objects that do not need independent implementation
-   Graphic.Line = Line;
+   // Sequence of "statistical" points.
+   Graphic.Points = require('./app/point')(Graphic);
    // "Mathematical" curve, given an "function" "f".
    // Piecewise smooth?
    Graphic.Curve = Curve;
