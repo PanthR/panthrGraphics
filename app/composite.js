@@ -30,18 +30,11 @@ define(function(require) {
       insertAt: function(i, node) {
          Collection.insertAt.call(this, i, node);
          node.parent(this);
-         node.update();
          return this;
       },
       remove: function(node) {
          Collection.remove.call(this, node);
          node.parent(null);
-         return this;
-      },
-      update: function() {
-         (this.children || []).forEach(function(child) {
-            child.update();
-         });
          return this;
       },
       toPhysicalCoords: function(coords) {

@@ -17,17 +17,10 @@ define(function(require) {
     *
     */
    Component = newClass(function init(attrs) {
-      this.prepare();
       attrs = mixin({}, this.class.defaults, attrs);
       this.set(attrs);
    });
    mixin(Component.prototype, {
-      /*
-       * Subclasses should use this to initialize components
-       * It will run once the component is created but before
-       * its attributes have been initialized
-       */
-      prepare: function() {},
       /*
        * Returns a point's physical coordinates
        * as determined by the transforms
@@ -74,9 +67,6 @@ define(function(require) {
             o[attrs] = arguments[1];
          }
          this.attr(o); // Subclasses can/must implement this
-         this.update(); // Allows subclasses to add behavior
-         this.paint(); // Concrete subclasses can implement things here
-         // Should trigger an update event here when we put events in
          return this;
       },
       /*
@@ -86,25 +76,11 @@ define(function(require) {
       attr: function(o) {
          mixin(this, o);
       },
-      getRealization: function() {
-         // Returns the element's "realization".
-         if (!this.el) {
-            throw new Error("No realization for abstract classes");
-         }
-         return this.el;
-      },
       /*
        * Subclasses can override this method to add
        * code that should run after attribute updates
        */
-      update: function() {},
-      /*
-       * Probably not needed. To be removed.
-       * Concrete subclasses should use this method to actually
-       * Create/adjust a visual element corresponding to component
-       */
-      paint: function() {
-      }
+      update: function() {}
    });
 
    return Component;
