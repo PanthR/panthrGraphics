@@ -41,12 +41,10 @@ define(function(require) {
          this.updatePoints();
          return this;
       },
-      updatePoints: function() {
-        // subclasses can overwrite this to respond to points changing
-      },
-      update: function() {
-        //subclasses
-      }
+      /*
+       * Subclasses can overwrite this to respond to points changing
+       */
+      updatePoints: function() {}
    });
 
    return Segment;

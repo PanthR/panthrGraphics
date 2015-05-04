@@ -22,25 +22,30 @@ define(function(require) {
       this.set(attrs);
    });
    mixin(Component.prototype, {
-      // Subclasses should use this to initialize components
-      // It will run once the component is created but before
-      // its attributes have been initialized
+      /*
+       * Subclasses should use this to initialize components
+       * It will run once the component is created but before
+       * its attributes have been initialized
+       */
       prepare: function() {},
-      // Returns a point's physical coordinates
-      // as determined by the transforms
-      // of the component's parents.
-      // coords needs to be an object with x,y properties.
+      /*
+       * Returns a point's physical coordinates
+       * as determined by the transforms
+       * of the component's parents.
+       * coords needs to be an object with x,y properties.
+       */
       toPhysicalCoords: function(coords) {
          // if component not not attached
          if (this.parent() == null) { return coords; }
          // Only Composites have transforms
          return this.parent().toPhysicalCoords(coords);
       },
-      // Returns a point's relative coordinates
-      // as determined by the transforms
-      // of the component's parents
-      // coords needs to be an object with x,y properties
-      // representing the point's physical coordinates.
+      /* Returns a point's relative coordinates
+       * as determined by the transforms
+       * of the component's parents
+       * coords needs to be an object with x,y properties
+       * representing the point's physical coordinates.
+       */
       fromPhysicalCoords: function(coords) {
          // if component not not attached
          if (this.parent() == null) { return coords; }
@@ -74,18 +79,24 @@ define(function(require) {
          // Should trigger an update event here when we put events in
          return this;
       },
-      // Sets attributes. Expects an object.
-      // Subclasses must implement if they need more done.
+      /*
+       * Sets attributes. Expects an object.
+       * Subclasses must implement if they need more done.
+       */
       attr: function(o) {
          mixin(this, o);
       },
-      update: function() {
-         // subclasses can override this method to add
-         // code that should run after attribute updates
-      },
+      /*
+       * Subclasses can override this method to add
+       * code that should run after attribute updates
+       */
+      update: function() {},
+      /*
+       * Probably not needed. To be removed.
+       * Concrete subclasses should use this method to actually
+       * Create/adjust a visual element corresponding to component
+       */
       paint: function() {
-         // Concrete subclasses should use this method to actually
-         // Create/adjust a visual element corresponding to component
       }
    });
 
