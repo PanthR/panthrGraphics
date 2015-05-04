@@ -14,13 +14,11 @@ define(function(require) {
       defaults: Circle.defaults
    });
    mixin(SVGCircle.prototype, {
-      initialize: function() {
+      prepare: function() {
          this.el = makeSVG('circle');
       },
-      attr: function(o) {
-         var coords;
-         mixin(this, o);
-         coords = this.toPhysicalCoords(this);
+      update: function() {
+         var coords = this.toPhysicalCoords({ x: this.x, y: this.y });
          this.el.setAttribute("cx", coords.x);
          this.el.setAttribute("cy", coords.y);
          this.el.setAttribute("r", this.r);
