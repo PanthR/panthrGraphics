@@ -8,6 +8,7 @@ define(function(require) {
       Polyline: require('./svg/polyline'),
       Rect: require('./svg/rect'),
       Path: require('./svg/path'),
+      Line: require('./svg/line'),
       Arc: require('./svg/arc'),
       Group: require('./svg/group'),
       Circle: require('./svg/circle'),

@@ -18,7 +18,7 @@ define(function(require) {
       // A new window to draw in
       Window: require('./app/window'),
       // A single line segment
-      // TODO uncomment this. Line: require('./app/line'),
+      Line: require('./app/line'),
       // A contiguous sequence of one or more line segments
       Polyline: require('./app/polyline'),
       // A (possibly filled) rectangle
