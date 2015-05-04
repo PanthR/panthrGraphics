@@ -16,15 +16,15 @@ return function(Graphic) {
     * @classdesc Represents a sequence of "statistical" points
     * that will be drawn the same. Using a "circle" by default.
     */
-   Point = newClass(function init() {}, Component);
+   Point = newClass(function init() {
+      this.points = [];
+      this.group = Graphic.Group.new();
+      Component.prototype.initialize.apply(this, arguments);
+   }, Component);
    mixin(Point, {
       defaults: {}
    });
    mixin(Point.prototype, {
-      prepare: function() {
-         this.points = [];
-         this.group = Graphic.Group.new();
-      },
       /*
        * Create a new point with type according to the settings
        * Basically a private method. Do NOT use directly.

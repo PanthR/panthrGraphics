@@ -23,6 +23,7 @@ define(function(require) {
    Composite = newClass(function init() {
       if (!this.children) { this.children = []; }
       this.transform = this.transform || Transform.ident();
+      Component.prototype.initialize.apply(this, arguments);
    }, Component);
 
    mixin(Composite.prototype, Collection, {

@@ -7,7 +7,8 @@ define(function(require) {
    newClass = require('../lib/newClass');
    Component = require('./component');
 
-   Circle = newClass(function init() {}, Component);
+   Circle = newClass(Component);
+
    mixin(Circle, {
       defaults: {
         x: 0.5,

@@ -17,7 +17,7 @@ define(function(require) {
     * @classdesc Represents a graphical window (e.g. svg/canvas element)
     *
     */
-   Window = newClass(function init() {}, Composite);
+   Window = newClass(Composite);
 
    mixin(Window, {
       defaults: {
@@ -27,12 +27,13 @@ define(function(require) {
       }
    });
    mixin(Window.prototype, {
-      update: function() {
+      attr: function(o) {
+         mixin(this, o);
+         // TODO: Ideally should check if transform is needed
          this.transform = Transform.scales(
             Scale.range(this.xmin, this.xmax, 0, this.px),
             Scale.range(this.ymin, this.ymax, 0, this.py)
          );
-         return Composite.prototype.update.call(this);
       }
    });
 

@@ -7,7 +7,7 @@ define(function(require) {
    newClass = require('../lib/newClass');
    Component = require('./component');
 
-   Line = newClass(function init() {}, Component);
+   Line = newClass(Component);
    mixin(Line, {
       defaults: {
         x1: 0.1,

@@ -14,7 +14,7 @@ define(function(require) {
     * @classdesc Represents contiguous sequence of segments
     *
     */
-   Polyline = newClass(function init() {}, Component);
+   Polyline = newClass(Component);
    mixin(Polyline, {
       defaults: { }
    });
