@@ -32,42 +32,41 @@ define(function(require) {
       Text: Text
    };
 
-   Graphic = {
-      // Generic class for anything that can be part of a graphic
-      // All other classes should subclass it
-      Component: require('./app/component'),
-      // Abstract class for the objects that are composites
-      // Window and Group should subclass it
-      Composite: require('./app/composite'),
-      // A color specification
-      Color: Color,
-      // 1d coordinate transformations
-      Scale: require('./app/scale'),
-      // 2d coordinate transformations
-      Transform: require('./app/transform'),
+   Graphic = {};
+   // Generic class for anything that can be part of a graphic
+   // All other classes should subclass it
+   Graphic.Component = require('./app/component');
+   // Abstract class for the objects that are composites
+   // Window and Group should subclass it
+   Graphic.Composite = require('./app/composite');
+   // A color specification
+   Graphic.Color = Color;
+   // 1d coordinate transformations
+   Graphic.Scale = require('./app/scale');
+   // 2d coordinate transformations
+   Graphic.Transform = require('./app/transform');
 
-      // A geometric point, typically shown as circle
-      Point: require('./app/point'),
-      // Derived Objects that do not need independent implementation
-      Line: Line,
-      // "Mathematical" curve, given an "function" "f".
-      // Piecewise smooth?
-      Curve: Curve,
-      // Overwrites all factory methods using methods provided
-      // by the factory argument
-      set: function(factory) {
-         // Ensure factory has provided all methods
-         Object.keys(factoryObjects).forEach(function(key) {
-            if (!factory.hasOwnProperty(key)) {
-               throw new Error('Factory must provide: ' + key);
-            }
-         });
-         // Copy over the factory's methods
-         Object.keys(factoryObjects).forEach(function(key) {
-            Graphic[key] = factory[key];
-         });
-         return Graphic;
-      }
+   // A geometric point, typically shown as circle
+   Graphic.Point = require('./app/point')(Graphic);
+   // Derived Objects that do not need independent implementation
+   Graphic.Line = Line;
+   // "Mathematical" curve, given an "function" "f".
+   // Piecewise smooth?
+   Graphic.Curve = Curve;
+   // Overwrites all factory methods using methods provided
+   // by the factory argument
+   Graphic.set = function(factory) {
+      // Ensure factory has provided all methods
+      Object.keys(factoryObjects).forEach(function(key) {
+         if (!factory.hasOwnProperty(key)) {
+            throw new Error('Factory must provide: ' + key);
+         }
+      });
+      // Copy over the factory's methods
+      Object.keys(factoryObjects).forEach(function(key) {
+         Graphic[key] = factory[key];
+      });
+      return Graphic;
    };
 
    Graphic.SVG = require('./app/svg');
