@@ -7,7 +7,8 @@ define(function(require) {
    newClass = require('../lib/newClass');
    Component = require('./component');
 
-   Circle = newClass(function init() {}, Component);
+   Circle = newClass(Component);
+
    mixin(Circle, {
       defaults: {
         x: 0.5,
@@ -16,7 +17,9 @@ define(function(require) {
       }
    });
    mixin(Circle.prototype, {
-
+      accept: function(v) {
+         return v.visitCircle(this);
+      }
    });
 
    return Circle;

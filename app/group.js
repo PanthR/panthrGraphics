@@ -7,12 +7,16 @@ define(function(require) {
    newClass = require('../lib/newClass');
    Composite = require('./composite');
 
-   Group = newClass(function init() {}, Composite);
+   Group = newClass(Composite);
+
    mixin(Group, {
       defaults: {}
    });
-   mixin(Group.prototype, {
 
+   mixin(Group.prototype, {
+      accept: function(v) {
+         return v.visitGroup(this);
+      }
    });
 
    return Group;
