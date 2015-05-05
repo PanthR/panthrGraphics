@@ -17,7 +17,9 @@ define(function(require) {
       }
    });
    mixin(Line.prototype, {
-
+      accept: function(v) {
+         return v.visitLine(this);
+      }
    });
 
    return Line;

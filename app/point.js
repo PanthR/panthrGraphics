@@ -76,8 +76,10 @@ return function(Graphic) {
          this.points.splice(i);
          this.group.remove(i);
          return this;
+      },
+      accept: function(v) {
+         return v.visitPoints(this);
       }
-
    });
 
    return Point;

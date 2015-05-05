@@ -14,7 +14,9 @@ define(function(require) {
    });
 
    mixin(Group.prototype, {
-
+      accept: function(v) {
+         return v.visitGroup(this);
+      }
    });
 
    return Group;

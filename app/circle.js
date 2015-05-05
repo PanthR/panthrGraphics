@@ -17,7 +17,9 @@ define(function(require) {
       }
    });
    mixin(Circle.prototype, {
-
+      accept: function(v) {
+         return v.visitCircle(this);
+      }
    });
 
    return Circle;

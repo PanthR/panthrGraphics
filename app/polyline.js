@@ -44,7 +44,10 @@ define(function(require) {
       /*
        * Subclasses can overwrite this to respond to points changing
        */
-      updatePoints: function() {}
+      updatePoints: function() {},
+      accept: function(v) {
+         return v.visitPolyline(this);
+      }
    });
 
    return Polyline;

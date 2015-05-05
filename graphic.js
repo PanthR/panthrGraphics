@@ -58,7 +58,7 @@ define(function(require) {
    // Piecewise smooth?
    Graphic.Curve = Curve;
 
-   // TODO: Turn to visitor Graphic.SVG = require('./app/svg');
+   Graphic.Visitor = require('./app/visitor.js');
 
    return Graphic;
 });

@@ -34,6 +34,9 @@ define(function(require) {
             Scale.range(this.xmin, this.xmax, 0, this.px),
             Scale.range(this.ymin, this.ymax, 0, this.py)
          );
+      },
+      accept: function(v) {
+         return v.visitWindow(this);
       }
    });
 

@@ -1,12 +1,10 @@
 (function(define) {'use strict';
 define(function(require) {
 
-   var ns = 'http://www.w3.org/2000/svg';
-   /* eslint-env browser */
-   return function makeSVG(name) {
-      return document.createElementNS(ns, name);
+   // Collects various visitors together
+   return {
+      toSVG: require('./visitors/svgVisitor')
    };
-
 });
 
 }(typeof define === 'function' && define.amd ? define : function(factory) {
