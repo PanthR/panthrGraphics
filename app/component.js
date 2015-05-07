@@ -80,7 +80,18 @@ define(function(require) {
        * Subclasses can override this method to add
        * code that should run after attribute updates
        */
-      update: function() {}
+      update: function() {},
+      /*
+       * Returns the components parameters, suitably scaled.
+       * Each component returns a different set of values.
+       *
+       * To do this properly, components need to assume that the
+       * transformations in place do not rotate or skew the shape in
+       * any way. Translation, scaling and x-y flipping are ok.
+       */
+      physicalParams: function() {
+
+      }
    });
 
    return Component;

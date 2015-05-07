@@ -19,6 +19,17 @@ define(function(require) {
    mixin(Line.prototype, {
       accept: function(v) {
          return v.visitLine(this);
+      },
+      physicalParams: function() {
+         var coords1, coords2;
+
+         coords1 = this.toPhysicalCoords({ x: this.x1, y: this.y1 });
+         coords2 = this.toPhysicalCoords({ x: this.x2, y: this.y2 });
+
+         return {
+            "x1": coords1.x, "y1": coords1.y,
+            "x2": coords2.x, "y2": coords2.y
+         };
       }
    });
 

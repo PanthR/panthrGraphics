@@ -44,30 +44,39 @@ define(function(require) {
          return el;
       },
       visitLine: function(o) {
-         var el = makeSVG('line');
-         var coords1 = o.toPhysicalCoords({ x: o.x1, y: o.y1 });
-         var coords2 = o.toPhysicalCoords({ x: o.x2, y: o.y2 });
-         set(el, {
-            'style': 'fill:none;stroke:blue;stroke-width:1',
-            "x1": coords1.x,
-            "y1": coords1.y,
-            "x2": coords2.x,
-            "y2": coords2.y
-         });
+         var el, params;
+
+         el = makeSVG('line');
+
+         params = o.physicalParams();
+         params.style = 'fill:none;stroke:blue;stroke-width:1';
+         set(el, params);
+
          return el;
       },
       visitPolyline: function(o) {
-         var el = makeSVG('polyline');
-         set(el, {
-            'style': 'fill:none;stroke:purple;stroke-width:1',
-            'points': pointsToString(
-               o.points.map(o.toPhysicalCoords.bind(o))
-            )
-         });
+         var el, params;
+
+         el = makeSVG('polyline');
+
+         params = o.physicalParams();
+         params.style = 'fill:none;stroke:purple;stroke-width:1';
+         params.points = pointsToString(params.points);
+         set(el, params);
+
          return el;
       },
       visitRect: function(o) {
-         console.log('Visiting Rect');
+         var el, params;
+
+         el = makeSVG('rect');
+
+         // TODO: Style should be more generally specified somewhere
+         params = o.physicalParams();
+         params.style = 'fill:red;stroke:blue;stroke-width:1';
+         set(el, params);
+
+         return el;
       },
       visitPath: function(o) {
          console.log('Visiting Path');
@@ -76,12 +85,18 @@ define(function(require) {
          console.log('Visiting Arc');
       },
       visitCircle: function(o) {
-         var el = makeSVG('circle');
-         var coords = o.toPhysicalCoords({ x: o.x, y: o.y });
+         var el, params;
+
+         el = makeSVG('circle');
+
+         // TODO: Style should be more generally specified somewhere
+         params = o.physicalParams();
+         params.style = 'fill:red;stroke:blue;stroke-width:1';
+
          set(el, {
-            "cx": coords.x,
-            "cy": coords.y,
-            "r": o.r,
+            "cx": params.x,
+            "cy": params.y,
+            "r": params.r
          });
          return el;
       },

@@ -19,6 +19,14 @@ define(function(require) {
    mixin(Circle.prototype, {
       accept: function(v) {
          return v.visitCircle(this);
+      },
+      physicalParams: function() {
+         var o;
+
+         o = this.toPhysicalCoords({ x: this.x, y: this.y });
+         o.r = this.r;
+
+         return o;
       }
    });
 

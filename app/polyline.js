@@ -47,6 +47,11 @@ define(function(require) {
       updatePoints: function() {},
       accept: function(v) {
          return v.visitPolyline(this);
+      },
+      physicalParams: function() {
+         return {
+            'points': this.points.map(this.toPhysicalCoords.bind(this))
+         };
       }
    });
 
