@@ -20,15 +20,7 @@ require(["../graphic"], function(Graphic) {
    w.append(ps);
    console.log("window:", w);
 
-   function addPoint(n) {
-      if (n === 0) {
-         var d = new Date();
-         document.body.appendChild(
-            Graphic.Visitor.toSVG.new().visit(w)
-         );
-         console.log("SVG render and insert took:", new Date() - d, "ms");
-         return;
-      }
+   for (var n = 0; n < 1000; n++)  {
       var p = { x: Math.random(), y: Math.random() };
       l.append(p);
       ps.append(p);
@@ -36,29 +28,24 @@ require(["../graphic"], function(Graphic) {
          x1: Math.random(), y1: Math.random(),
          x2: Math.random(), y2: Math.random()
       }));
-      setTimeout(function() { addPoint(n-1); }, 0);
    }
-   setTimeout(function() {
-      addPoint(1000);
-   }, 2000);
-   // l.append({ x: 0.1, y: 0.1 });
-   // l.append({ x: 0.2, y: 0.4 });
-   // l2.append({ x: 0.3, y: 0.5 });
-   // l2.append({ x: 0.2, y: 0.2 });
-   // setTimeout(function() {
-   //    w.remove(l);
-   //    setTimeout(function() {
-   //       w.append(l);
-   //    }, 2000);
-   // }, 2000);
-   // setTimeout(function() {
-   //    w.set({ px: 200 }); // Should scale picture. Doesn't yet
-   //    l.append({ x: 0.5, y: 0.5 });
-   // }, 2000);
-   // w.el.onclick = function(ev) {
-   //    var c = Graphic.Circle.new();
-   //    c.parent(w);
-   //    w.el.appendChild(c.el);
-   //    c.set(w.transform.inverse().pair({ x: ev.clientX, y: ev.clientY }));
+   var d = new Date();
+   document.body.appendChild(
+      Graphic.Visitor.toSVG.new().visit(w)
+   );
+   console.log("SVG render and insert took:", new Date() - d, "ms");
+
+   console.log(Graphic.Settings.defaults());
+
+   var w = Graphic.Window.new().set({ px: 300, py: 300, xmax: 10, ymin: 1, ymax: 0 });
+   var p = Graphic.Path.fromFunction(function(x) { return 0.1* Math.sin(2*x) + 0.5;}, 1, 10, 20);
+   w.append(p);
+
+   // for (var x = 1; x < 5.1; x += 0.3) {
+   //    w.append(Graphic.Points.new({ x: x, y: Math.exp(x) }));
    // }
+
+   document.body.appendChild(
+      Graphic.Visitor.toSVG.new().visit(w)
+   );
 });
