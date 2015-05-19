@@ -37,13 +37,15 @@ require(["../graphic"], function(Graphic) {
 
    console.log(Graphic.Settings.defaults());
 
+   var f = function(x) { return 0.1* Math.sin(2*x) + 0.5; };
+
    var w = Graphic.Window.new().set({ px: 300, py: 300, xmax: 10, ymin: 1, ymax: 0 });
-   var p = Graphic.Path.fromFunction(function(x) { return 0.1* Math.sin(2*x) + 0.5;}, 1, 10, 20);
+   var p = Graphic.Path.fromFunction(f, 1, 10, 20);
    w.append(p);
 
-   // for (var x = 1; x < 5.1; x += 0.3) {
-   //    w.append(Graphic.Points.new({ x: x, y: Math.exp(x) }));
-   // }
+   for (var x = 1; x < 9.1; x += 0.3) {
+      w.append(Graphic.Points.new({ x: x, y: f(x), r: 2 }));
+   }
 
    document.body.appendChild(
       Graphic.Visitor.toSVG.new().visit(w)

@@ -32,7 +32,13 @@ return function(Graphic) {
       makePoint: function(o) {
          // TODO: Later on will pick a point type here based on
          // a pch type attribute. For now default to circle.
-         return Graphic.Circle.new(o);
+         // TODO: Needs more work here. For now at least we need to
+         // read the radius for the circles somehow.
+         var params = { x: o.x, y: o.y };
+
+         if (this.hasOwnProperty("r")) { params.r = this.r; }
+
+         return Graphic.Circle.new(params);
       },
       // If the user has passed a point as part of attributes
       // Append that point.
