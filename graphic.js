@@ -23,7 +23,7 @@ define(function(require) {
    // A (possibly filled) rectangle
    Graphic.Rect = Rect;
    // A Bezier curve with a number of control points
-   Graphic.Path = Path;
+   Graphic.Path = require('./app/path');
    // Part of an ellipse
    Graphic.Arc = Arc;
    Graphic.Circle = require('./app/circle');

@@ -22,6 +22,13 @@ define(function(require) {
    function pointsToString(ps) {
       return ps.map(pointToString).join(' ');
    }
+   function concatCoords(c) {
+      return " " + c.x + " " + c.y;
+   }
+   function pathPointToString(p) {
+      return p.type + " " +
+         p.coords.map(concatCoords).join(",");
+   }
 
    SVGVisitor = newClass(function init() {
 
@@ -54,6 +61,22 @@ define(function(require) {
 
          return el;
       },
+      visitPath: function(o) {
+         var el, params;
+
+         el = makeSVG('path');
+
+         params = {
+            d: o.physicalParams()
+                .map(pathPointToString).join(' '),
+            fill: 'transparent',
+            stroke: 'black'
+         };
+
+         set(el, params);
+
+         return el;
+      },
       visitPolyline: function(o) {
          var el, params;
 
@@ -77,9 +100,6 @@ define(function(require) {
          set(el, params);
 
          return el;
-      },
-      visitPath: function(o) {
-         console.log('Visiting Path');
       },
       visitArc: function(o) {
          console.log('Visiting Arc');
