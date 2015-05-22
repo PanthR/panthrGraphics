@@ -14,21 +14,24 @@ require(["../graphic"], function(Graphic) {
    // document.body.appendChild(w.el);
    console.log("Manually adding element");
    var l = Graphic.Polyline.new();
-   var ps = Graphic.Points.new();
 
    w.append(l);
-   w.append(ps);
-   console.log("window:", w);
 
+   var xs = [], ys = [];
    for (var n = 0; n < 1000; n++)  {
       var p = { x: Math.random(), y: Math.random() };
+      xs.push(p.x);
+      ys.push(p.y);
       l.append(p);
-      ps.append(p);
       w.append(Graphic.Line.new({
          x1: Math.random(), y1: Math.random(),
          x2: Math.random(), y2: Math.random()
       }));
    }
+   var ps = Graphic.Points.new({ x: xs, y: ys, cex: 2 });
+   w.append(ps);
+   console.log("window:", w);
+
    var d = new Date();
    document.body.appendChild(
       Graphic.Visitor.toSVG.new().visit(w)
@@ -43,9 +46,12 @@ require(["../graphic"], function(Graphic) {
    var p = Graphic.Path.fromFunction(f, 1, 10, 20);
    w.append(p);
 
+   var xs = [], ys= [];
    for (var x = 1; x < 9.1; x += 0.3) {
-      w.append(Graphic.Points.new({ x: x, y: f(x), r: 2 }));
+      xs.push(x);
+      ys.push(f(x));
    }
+   w.append(Graphic.Points.new({ x: xs, y: ys, cex: 2 }));
 
    document.body.appendChild(
       Graphic.Visitor.toSVG.new().visit(w)

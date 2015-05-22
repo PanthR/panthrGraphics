@@ -135,7 +135,30 @@ define(function(require) {
          console.log('Visiting Text');
       },
       visitPoints: function(o) {
-         return this.visit(o.group);
+         var el, base, point, params;
+
+         el = makeSVG('g');
+
+         // TODO: Style should be more generally specified somewhere
+         params = o.physicalParams();
+
+         // TODO: Change later
+         // We are creating a representative point
+         base = makeSVG('circle');
+
+         // TODO: Improve on this
+         set(base, {
+            style: 'fill:black',
+            r: params.cex
+         });
+
+         params.points.forEach(function(p) {
+            point = base.cloneNode();
+            set(point, { cx: p.x, cy: p.y, });
+            el.appendChild(point);
+         });
+
+         return el;
       },
       visitLines: function(o) {
          var el = makeSVG('g');
