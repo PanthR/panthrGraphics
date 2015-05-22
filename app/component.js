@@ -82,7 +82,7 @@ define(function(require) {
        */
       update: function() {},
       /*
-       * Returns the components parameters, suitably scaled.
+       * Returns the component's parameters, suitably scaled.
        * Each component returns a different set of values.
        *
        * To do this properly, components need to assume that the
