@@ -1,14 +1,14 @@
 (function(define) {'use strict';
 define(function(require) {
 
-   var Line, Component, mixin, newClass;
+   var Segments, Component, mixin, newClass;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
    Component = require('./component');
 
-   Line = newClass(Component);
-   mixin(Line, {
+   Segments = newClass(Component);
+   mixin(Segments, {
       defaults: {
         x1: 0.1,
         y1: 0.1,
@@ -16,9 +16,9 @@ define(function(require) {
         y2: 0.9
       }
    });
-   mixin(Line.prototype, {
+   mixin(Segments.prototype, {
       accept: function(v) {
-         return v.visitLine(this);
+         return v.visitSegments(this);
       },
       physicalParams: function() {
          var coords1, coords2;
@@ -33,7 +33,7 @@ define(function(require) {
       }
    });
 
-   return Line;
+   return Segments;
 
 });
 

@@ -16,8 +16,8 @@ define(function(require) {
    //
    // A new window to draw in
    Graphic.Window =  require('./app/window');
-   // A single line segment
-   Graphic.Line = require('./app/line');
+   // One or more line segments
+   Graphic.Segments = require('./app/segments');
    // A contiguous sequence of one or more line segments
    Graphic.Polyline = require('./app/polyline');
    // A (possibly filled) rectangle
@@ -52,8 +52,6 @@ define(function(require) {
    // Derived Objects that do not need independent implementation
    // Sequence of "statistical" points.
    Graphic.Points = require('./app/point')(Graphic);
-   // Sequence of line segments
-   Graphic.Lines = Lines;
    // "Mathematical" curve, given an "function" "f".
    // Piecewise smooth?
    Graphic.Curve = Curve;

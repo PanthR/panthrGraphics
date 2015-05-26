@@ -50,7 +50,7 @@ define(function(require) {
 
          return el;
       },
-      visitLine: function(o) {
+      visitSegments: function(o) {
          var el, params;
 
          el = makeSVG('line');

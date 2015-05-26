@@ -23,7 +23,7 @@ require(["../graphic"], function(Graphic) {
       xs.push(p.x);
       ys.push(p.y);
       l.append(p);
-      w.append(Graphic.Line.new({
+      w.append(Graphic.Segments.new({
          x1: Math.random(), y1: Math.random(),
          x2: Math.random(), y2: Math.random()
       }));
