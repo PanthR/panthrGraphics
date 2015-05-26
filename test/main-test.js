@@ -17,17 +17,20 @@ require(["../graphic"], function(Graphic) {
 
    w.append(l);
 
-   var xs = [], ys = [];
-   for (var n = 0; n < 1000; n++)  {
+   var xs = [], ys = [], x0s = [], y0s = [], x1s = [], y1s = [];
+   for (var n = 0; n < 20; n++)  {
       var p = { x: Math.random(), y: Math.random() };
       xs.push(p.x);
       ys.push(p.y);
       l.append(p);
-      w.append(Graphic.Segments.new({
-         x1: Math.random(), y1: Math.random(),
-         x2: Math.random(), y2: Math.random()
-      }));
+      x0s.push(Math.random());
+      x1s.push(Math.random());
+      y0s.push(Math.random());
+      y1s.push(Math.random());
    }
+   w.append(Graphic.Segments.new({
+      x0: x0s, y0: y0s, x1: x1s, y1: y1s
+   }));
    var ps = Graphic.Points.new({ x: xs, y: ys, cex: 2 });
    w.append(ps);
    console.log("window:", w);

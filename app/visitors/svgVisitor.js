@@ -51,11 +51,19 @@ define(function(require) {
          return el;
       },
       visitSegments: function(o) {
-         var el, params;
+         var el, params, points;
 
-         el = makeSVG('line');
+         params = {};
 
-         params = o.physicalParams();
+         points = o.physicalParams().points;
+
+         el = makeSVG('path');
+
+         params.d = points.map(function(p) {
+            return "M "  + p.x0 + " " + p.y0 +
+                   " L " + p.x1 + " " + p.y1;
+         }).join(" ");
+
          params.style = 'fill:none;stroke:blue;stroke-width:1';
          set(el, params);
 
