@@ -60,6 +60,8 @@ define(function(require) {
 
    Graphic.Visitor = require('./app/visitor.js');
 
+   Graphic.Settings = require('./app/settings');
+
    return Graphic;
 });
 
