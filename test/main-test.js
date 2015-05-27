@@ -13,15 +13,9 @@ require(["../graphic"], function(Graphic) {
    var w = Graphic.Window.new().set({ px: 300, py: 300 });
    // document.body.appendChild(w.el);
    console.log("Manually adding element");
-   var l = Graphic.Polyline.new();
-
 
    var xs = [], ys = [], x0s = [], y0s = [], x1s = [], y1s = [];
-   for (var n = 0; n < 20; n++)  {
-      var p = { x: Math.random(), y: Math.random() };
-      xs.push(p.x);
-      ys.push(p.y);
-      l.append(p);
+   for (var n = 0; n < 10; n++)  {
       x0s.push(Math.random());
       x1s.push(Math.random());
       y0s.push(Math.random());
@@ -33,7 +27,9 @@ require(["../graphic"], function(Graphic) {
    w.append(Graphic.Segments.new({
       x0: x0s, y0: y0s, x1: x1s, y1: y1s
    }));
-   w.append(l);
+   w.append(Graphic.Polyline.new({
+      x: x0s, y: y1s
+   }));
    var ps = Graphic.Points.new({ x: xs, y: ys, cex: 2 });
    w.append(ps);
 

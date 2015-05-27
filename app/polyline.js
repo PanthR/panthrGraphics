@@ -1,56 +1,42 @@
 (function(define) {'use strict';
 define(function(require) {
 
-   var Polyline, Component, mixin, newClass;
+   var Polyline, Component, mixin, newClass, utils;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
+   utils = require('../lib/utils');
    Component = require('./component');
 
    /**
-    * Polyline Properties:
-    * - points: List of pairs of objects with x, y coordinates
     * @class Polyline
-    * @classdesc Represents contiguous sequence of segments
+    * @classdesc Represents a sequence of contiguous segments
     *
+    * Polyline Properties:
+    * - `x`, `y`: Must be arrays of same length.
+    *
+    * Attributes:
+    * - `lty`
+    * - `lwd`
+    * - `col`
     */
    Polyline = newClass(Component);
    mixin(Polyline, {
       defaults: { }
    });
    mixin(Polyline.prototype, {
-      initialize: function() {
-         this.points = [];
-      },
-      append: function(o) {
-         return this.insertAt(this.points.length, o);
-      },
-      prepend: function(o) {
-         return this.insertAt(0, o);
-      },
-      insertAt: function(i, o) {
-         this.points.splice(i, 0, o);
-         this.updatePoints();
-         return this;
-      },
-      get: function(i) {
-         return this.points[i];
-      },
-      remove: function(i) {
-         this.points.splice(i);
-         this.updatePoints();
-         return this;
-      },
-      /*
-       * Subclasses can overwrite this to respond to points changing
-       */
-      updatePoints: function() {},
       accept: function(v) {
          return v.visitPolyline(this);
       },
+      /**
+       * Returns an object with a `points` array whose entries
+       * are objects `{ x: , y: }` representing the endpoints
+       * of the segments.
+       */
       physicalParams: function() {
          return {
-            'points': this.points.map(this.toPhysicalCoords.bind(this))
+            points: utils.zipxy(this.x, this.y)
+                     .map(this.toPhysicalCoords.bind(this))
          };
       }
    });
