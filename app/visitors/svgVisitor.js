@@ -153,26 +153,22 @@ define(function(require) {
          console.log('Visiting Text');
       },
       visitPoints: function(o) {
-         var el, base, point, params;
+         var el, base, points, params;
 
          el = makeSVG('g');
 
          // TODO: Style should be more generally specified somewhere
-         params = o.physicalParams();
-
-         // TODO: Change later
-         // We are creating a representative point
-         base = makeSVG('circle');
-
-         // TODO: Improve on this
-         set(base, {
+         params = {
             style: 'fill:black',
-            r: params.cex
-         });
+            r: '3'
+         };
 
-         params.points.forEach(function(p) {
-            point = base.cloneNode();
-            set(point, { cx: p.x, cy: p.y, });
+         set(el, params);
+
+         o.physicalParams().points.forEach(function(p) {
+            var point = makeSVG('circle');
+
+            set(point, { cx: p.x, cy: p.y, r: params.r });
             el.appendChild(point);
          });
 

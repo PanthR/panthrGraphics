@@ -3,68 +3,45 @@ define(function(require) {
 
 return function(Graphic) {
 
-   var Point, Component, mixin, newClass, ensureArray;
+   var Point, Component, mixin, newClass, utils;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
-   ensureArray = require('../lib/utils').ensureArray;
+   utils = require('../lib/utils');
    Component = require('./component');
 
    /**
-    * Point Properties:
-    * - `x`, `y`: arrays of the point coordinates.
-    *             Shorter array will recycle
-    * - `group`: A `Group` object that will eventually contain
-                 the actual representations of the points.
     * @class Point
     * @classdesc Represents a sequence of "statistical" points
     * that will be drawn the same. Using a "circle" by default.
     *
+    * Point Properties:
+    * - `x`, `y`: Arrays of the point coordinates. Must be equal length.
+    *
     * The actual point elements are created during a `visit` call
     * and based on current settings (and those provided by the visitor).
+    *
+    * Attributes:
+    * - `col`
+    * - `pch`
+    * - `cex`
     */
-   Point = newClass(function init(o) {
-      this.x = ensureArray(o.x);
-      this.y = ensureArray(o.y);
-      delete o.x;
-      delete o.y;
-
-      Component.prototype.initialize.apply(this, arguments);
-   }, Component);
+   Point = newClass(Component);
    mixin(Point, {
-      defaults: {}
+      defaults: {
+         x: [ 0.1 ],
+         y: [ 0.1 ]
+      }
    });
    mixin(Point.prototype, {
-      attr: function(o) {
-         mixin(this, o);
-
-         return this;
-      },
-      physicalParams: function()  {
-         // We create the actual points list here, consuting the
-         // visitor's settings.
-         var points = [], i, npoints;
-
-         npoints = Math.max(this.x.length, this.y.length);
-
-         for (i = 0; i < npoints; i++) {
-
-            points.push(
-               this.toPhysicalCoords({
-                  x: this.x[i % this.x.length],
-                  y: this.y[i % this.y.length]
-               })
-            );
-         }
-
-         return {
-            // TODO: Later add more settings here
-            points: points,
-            cex: this.cex
-         };
-      },
       accept: function(v) {
          return v.visitPoints(this);
+      },
+      physicalParams: function()  {
+         return {
+            points: utils.zipxy(this.x, this.y)
+                     .map(this.toPhysicalCoords.bind(this))
+         };
       }
    });
 

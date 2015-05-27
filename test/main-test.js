@@ -14,7 +14,7 @@ require(["../graphic"], function(Graphic) {
    // document.body.appendChild(w.el);
    console.log("Manually adding element");
 
-   var xs = [], ys = [], x0s = [], y0s = [], x1s = [], y1s = [];
+   var x0s = [], y0s = [], x1s = [], y1s = [];
    for (var n = 0; n < 10; n++)  {
       x0s.push(Math.random());
       x1s.push(Math.random());
@@ -30,7 +30,7 @@ require(["../graphic"], function(Graphic) {
    w.append(Graphic.Polyline.new({
       x: x0s, y: y1s
    }));
-   var ps = Graphic.Points.new({ x: xs, y: ys, cex: 2 });
+   var ps = Graphic.Points.new({ x: x0s, y: y0s, cex: 2 });
    w.append(ps);
 
    console.log("window:", w);
