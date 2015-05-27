@@ -33,7 +33,7 @@ define(function(require) {
       accept: function(v) {
          return v.visitSegments(this);
       },
-      /*
+      /**
        * Returns an object with a `points` array whose entries
        * are objects `{ x0: , y0: , x1:, y1: }` representing
        * a single segment.
