@@ -14,15 +14,20 @@ define(function(require) {
     * - `points` An array consisting of objects with keys:
     *     - type: One of "M", "L", "C", "S", "Z". See SVG docs
     *          for the meaning of these symbols. Currently it does not
-    *          support the lower-case versions, that allow for relative
+    *          support the lower-case versions that allow for relative
     *          coordinates, nor does it allow "Q", "T" for quadratic
     *          curves.
-    *     - coords: An array of coordinate `{ x, y }` objects. Number
+    *     - coords: An array of coordinate `{ x:, y: }` objects. Number
     *          depends on the type:
     *          - For "M", "L", one point
     *          - For "C", two control points followed by one point
     *          - For "S", one control point followed by one point
     *          - For "Z", no points
+    *
+    * Attributes:
+    * - `lty`
+    * - `lwd`
+    * - `col`
     */
    Path = newClass(function init() {
       this.points = [];
@@ -30,7 +35,7 @@ define(function(require) {
    }, Component);
    mixin(Path, {
       defaults: { },
-      /*
+      /**
        * Generates a Bezier curve for the function f(x) using
        * a total of n points (not counting control points)
        * and an x-interval from a to b. If n is not provided,
