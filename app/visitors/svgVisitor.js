@@ -98,14 +98,24 @@ define(function(require) {
          return el;
       },
       visitRect: function(o) {
-         var el, params;
+         var el, params, points;
 
-         el = makeSVG('rect');
+         el = makeSVG('g');
 
          // TODO: Style should be more generally specified somewhere
-         params = o.physicalParams();
-         params.style = 'fill:red;stroke:blue;stroke-width:1';
+         params = {};
+         params.style = 'fill:transparent;stroke:red;stroke-width:1';
          set(el, params);
+         points = o.physicalParams().points.forEach(function(p) {
+            var rect = makeSVG('rect');
+            set(rect, {
+               x: Math.min(p.x0, p.x1),
+               y: Math.min(p.y0, p.y1),
+               width: Math.abs(p.x0-p.x1),
+               height: Math.abs(p.y0-p.y1)
+            });
+            el.appendChild(rect);
+         });
 
          return el;
       },

@@ -21,7 +21,7 @@ define(function(require) {
    // A contiguous sequence of one or more line segments
    Graphic.Polyline = require('./app/polyline');
    // A (possibly filled) rectangle
-   Graphic.Rect = Rect;
+   Graphic.Rect = require('./app/rect');
    // A Bezier curve with a number of control points
    Graphic.Path = require('./app/path');
    // Part of an ellipse
