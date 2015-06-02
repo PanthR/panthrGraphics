@@ -7,8 +7,8 @@ define(function(require) {
 
    var Graphic,        // Container for all Graphic related work
        // Abstract classes. Factories need to provide implementation.
-       Lines, Path, Text,
-       Rect, Curve, Arc, Group, Color;
+       Text,
+       Rect, Curve, Group, Color;
 
    Graphic = {};
 
@@ -24,9 +24,8 @@ define(function(require) {
    Graphic.Rect = require('./app/rect');
    // A Bezier curve with a number of control points
    Graphic.Path = require('./app/path');
-   // Part of an ellipse
-   Graphic.Arc = Arc;
-   Graphic.Circle = require('./app/circle');
+   // Part of an ellipse/circle
+   Graphic.Sector = require('./app/sector');
    // A container for objects
    Graphic.Group = require('./app/group');
    // Text labels

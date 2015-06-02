@@ -32,6 +32,21 @@ require(["../graphic"], function(Graphic) {
    }));
    var ps = Graphic.Points.new({ x: x0s, y: y0s, cex: 2 });
    w.append(ps);
+   w.append(Graphic.Sector.new({
+      cx: 0.5,
+      cy: 0.5,
+      r: 0.2,
+      ba: 0.3,
+      ea: 0.4
+   }));
+
+   w.append(Graphic.Sector.new({
+      cx: 0.5,
+      cy: 0.5,
+      r: 0.2,
+      ba: 0.85,
+      ea: 0.95
+   }));
 
    console.log("window:", w);
 

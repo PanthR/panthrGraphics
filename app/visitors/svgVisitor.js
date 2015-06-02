@@ -119,23 +119,35 @@ define(function(require) {
 
          return el;
       },
-      visitArc: function(o) {
-         console.log('Visiting Arc');
-      },
-      visitCircle: function(o) {
-         var el, params;
+      visitSector: function(o) {
+         var el, params, d, dist_angle, large_arc;
 
-         el = makeSVG('circle');
+         el = makeSVG('path');
 
          // TODO: Style should be more generally specified somewhere
          params = o.physicalParams();
-         params.style = 'fill:red;stroke:blue;stroke-width:1';
+
+         dist_angle = params.ea - params.ba;
+         large_arc = dist_angle >= 0.5 ||
+                     (dist_angle <= 0 && dist_angle >= -0.5) ? 1 : 0;
+
+         if (Math.abs(dist_angle) >= 1) {
+            // Draw full circle
+         } else {
+            d = "M" + concatCoords(params.c) +
+                " L" + concatCoords(params.b) +
+                " A " + params.rx + " " + params.ry +
+                " 0 " +
+                " " + large_arc + " " + 1 +
+                concatCoords(params.e) +
+                " Z";
+         }
 
          set(el, {
-            "cx": params.x,
-            "cy": params.y,
-            "r": params.r
+            style: 'fill:red;stroke:blue;stroke-width:1',
+            d: d
          });
+
          return el;
       },
       visitGroup: function(o) {
