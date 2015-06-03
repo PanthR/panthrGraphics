@@ -315,13 +315,48 @@ define(function(require) {
       }
    };
 
-   // Later: Device could be specified to allow different settings for
-   // different devices. For now we default to the svg.
-   Settings = newClass(function init(device) {
+   /*
+    * Create a new settings/theme object.
+    *
+    * Can specify an existing `theme` to inherit from.
+    */
+   Settings = newClass(function init(theme) {
       this.settings = {}; // Object for new settings
+      // TODO: Access the theme
+   });
+
+   mixin(Settings, {
+      /*
+       * Returns the defaults in "flattened" form
+       */
+      defaults: function() {
+         return flatten(defaults);
+      },
+      /*
+       * Returns an array of names of available themes
+       */
+      themes: function() {
+
+      }
    });
 
    mixin(Settings.prototype, {
+      /*
+       * Save current settings as a new theme.
+       *
+       * - `name`: The name of the new theme.
+       * - `overwrite`: If `true`, and the name of the theme
+       * exists, it will overwrite it. Defaults to `false`.
+       *
+       * Presumably each user will have their own copy of themes.
+       *
+       * Return value: true if successful, false if not. A value
+       * of false will only arise if the theme exists and `overwrite`
+       * is false.
+       */
+      saveAsTheme: function(name, overwrite) {
+
+      },
       /*
        * sets values for settings keys.
        * Helper methods should turn dot-separated options
@@ -334,20 +369,28 @@ define(function(require) {
        * gets values for settings.
        * Helper methods should turn dot-separated options
        * to appropriate nested objects
+       *
+       * - `key` is a dot-separated list of the path to the desired
+       * items.
+       * - `n_items` is the number of values to be retrieved. It defaults
+       * to 1. If it is more than 1, then arrays of that length are
+       * returned instead of numbers at the final options. If not enough
+       * options are provided in the settings, then the options that are
+       * present are recycled. Optional.
+       *
+       * If the key is a full path to a property, returns a single value or
+       * array of values. If the key is a partial path, it returns an object
+       * whose properties are the available "extensions" to the partial path
+       * and whose values are single values or arrays of values depending on
+       * `n_items`.
        */
-      get: function(key) {
+      get: function(key, n_items) {
 
       }
    });
-   mixin(Settings, {
-      /*
-       * Returns the defaults in "flattened" form
-       */
-      defaults: function() {
-         return flatten(defaults);
-      }
-   });
 
+
+   // Helper methods
    function isObject(o) {
       return (!Array.isArray(o) && typeof o === 'object');
    }
