@@ -120,27 +120,39 @@ define(function(require) {
          return el;
       },
       visitSector: function(o) {
-         var el, params, d, dist_angle, large_arc;
+         var el, params, d, distAngle, largeArc;
 
          el = makeSVG('path');
 
          // TODO: Style should be more generally specified somewhere
          params = o.physicalParams();
 
-         dist_angle = params.ea - params.ba;
-         large_arc = dist_angle >= 0.5 ||
-                     (dist_angle <= 0 && dist_angle >= -0.5) ? 1 : 0;
+         distAngle = params.ea - params.ba;
+         largeArc = distAngle >= 0.5 ||
+                     distAngle <= 0 && distAngle >= -0.5 ? 1 : 0;
 
-         if (Math.abs(dist_angle) >= 1) {
+         if (Math.abs(distAngle) >= 1) {
             // Draw full circle
-         } else {
-            d = "M" + concatCoords(params.c) +
-                " L" + concatCoords(params.b) +
-                " A " + params.rx + " " + params.ry +
-                " 0 " +
-                " " + large_arc + " " + 1 +
+            params.e.x = 2 * params.c.x - params.b.x;
+            params.e.y = 2 * params.c.y - params.b.y;
+            d = 'M' + concatCoords(params.b) +
+                ' A ' + params.rx + ' ' + params.ry +
+                ' 0 ' +
+                ' ' + largeArc + ' ' + 1 +
                 concatCoords(params.e) +
-                " Z";
+                ' A ' + params.rx + ' ' + params.ry +
+                ' 0 ' +
+                ' ' + largeArc + ' ' + 1 +
+                concatCoords(params.b) +
+                ' Z';
+         } else {
+            d = 'M' + concatCoords(params.c) +
+                ' L' + concatCoords(params.b) +
+                ' A ' + params.rx + ' ' + params.ry +
+                ' 0 ' +
+                ' ' + largeArc + ' ' + 1 +
+                concatCoords(params.e) +
+                ' Z';
          }
 
          set(el, {
