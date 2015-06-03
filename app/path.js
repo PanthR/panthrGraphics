@@ -54,10 +54,14 @@ define(function(require) {
          h = (b - a) / n;
          dstep = h * 0.05;
 
-         xs = [], ys = [], yps = [], ymids = [];
+         xs = [];
+         ys = [];
+         yps = [];
+         ymids = [];
 
-         for (i = 0; i < n + 1; i++) {
-            x = a + h * i, y = f(x);
+         for (i = 0; i < n + 1; i += 1) {
+            x = a + h * i;
+            y = f(x);
             xs.push(x);
             ys.push(y);
             yps.push((f(x + dstep) - y) / dstep);
@@ -66,14 +70,14 @@ define(function(require) {
 
          path = Path.new();
 
-         path.addStep("M", { x: xs[0], y: ys[0] });
+         path.addStep('M', { x: xs[0], y: ys[0] });
 
-         for (i = 0; i < n; i++) {
+         for (i = 0; i < n; i += 1) {
             // Reusing variable dstep for x-length of vec(PQ)
              // Sadly, choosing this dstep cause it "feels right"
             dstep = 0.3 * h;
 
-            path.addStep("C",
+            path.addStep('C',
                { x: xs[i] + dstep,
                  y: ys[i] + yps[i] * dstep }, // Q0
                { x: xs[i + 1] - dstep,
@@ -108,7 +112,7 @@ define(function(require) {
             return {
                type: point.type,
                coords: point.coords.map(toPhys)
-            }
+            };
          });
       }
    });

@@ -7,15 +7,14 @@ define(function(require) {
 
    var Graphic,        // Container for all Graphic related work
        // Abstract classes. Factories need to provide implementation.
-       Text,
-       Rect, Curve, Group, Color;
+       Text, Curve, Color;
 
    Graphic = {};
 
    // Primitives
    //
    // A new window to draw in
-   Graphic.Window =  require('./app/window');
+   Graphic.Window = require('./app/window');
    // One or more line segments
    Graphic.Segments = require('./app/segments');
    // A contiguous sequence of one or more line segments

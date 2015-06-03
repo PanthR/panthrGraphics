@@ -41,11 +41,11 @@ require(["../graphic"], function(Graphic) {
    }));
 
    w.append(Graphic.Sector.new({
-      cx: 0.5,
-      cy: 0.5,
+      cx: 0.7,
+      cy: 0.2,
       r: 0.2,
-      ba: 0.85,
-      ea: 0.95
+      ba: 0,
+      ea: 1
    }));
 
    console.log("window:", w);

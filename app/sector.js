@@ -61,12 +61,12 @@ define(function(require) {
          ry = Math.abs(o.y - c.y);
 
          ret = {
-            c : c,
-            b : {
+            c: c,
+            b: {
                x: c.x + rx * Math.cos(this.ba * 2 * Math.PI),
                y: c.y + ry * Math.sin(this.ba * 2 * Math.PI)
             },
-            e : {
+            e: {
                x: c.x + rx * Math.cos(this.ea * 2 * Math.PI),
                y: c.y + ry * Math.sin(this.ea * 2 * Math.PI)
             },

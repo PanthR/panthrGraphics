@@ -10,7 +10,7 @@ define(function(require) {
    /* eslint-env browser */
    function makeSVG(name) {
       return document.createElementNS(ns, name);
-   };
+   }
 
    function set(el, obj) {
       Object.keys(obj).forEach(function(key) {
@@ -23,11 +23,11 @@ define(function(require) {
       return ps.map(pointToString).join(' ');
    }
    function concatCoords(c) {
-      return " " + c.x + " " + c.y;
+      return ' ' + c.x + ' ' + c.y;
    }
    function pathPointToString(p) {
-      return p.type + " " +
-         p.coords.map(concatCoords).join(",");
+      return p.type + ' ' +
+         p.coords.map(concatCoords).join(',');
    }
 
    SVGVisitor = newClass(function init() {
@@ -60,9 +60,9 @@ define(function(require) {
          el = makeSVG('path');
 
          params.d = points.map(function(p) {
-            return "M "  + p.x0 + " " + p.y0 +
-                   " L " + p.x1 + " " + p.y1;
-         }).join(" ");
+            return 'M ' + p.x0 + ' ' + p.y0 +
+                  ' L ' + p.x1 + ' ' + p.y1;
+         }).join(' ');
 
          params.style = 'fill:none;stroke:blue;stroke-width:1';
          set(el, params);
@@ -98,7 +98,7 @@ define(function(require) {
          return el;
       },
       visitRect: function(o) {
-         var el, params, points;
+         var el, params;
 
          el = makeSVG('g');
 
@@ -106,13 +106,13 @@ define(function(require) {
          params = {};
          params.style = 'fill:transparent;stroke:red;stroke-width:1';
          set(el, params);
-         points = o.physicalParams().points.forEach(function(p) {
+         o.physicalParams().points.forEach(function(p) {
             var rect = makeSVG('rect');
             set(rect, {
                x: Math.min(p.x0, p.x1),
                y: Math.min(p.y0, p.y1),
-               width: Math.abs(p.x0-p.x1),
-               height: Math.abs(p.y0-p.y1)
+               width: Math.abs(p.x0 - p.x1),
+               height: Math.abs(p.y0 - p.y1)
             });
             el.appendChild(rect);
          });
@@ -177,7 +177,7 @@ define(function(require) {
          console.log('Visiting Text');
       },
       visitPoints: function(o) {
-         var el, base, points, params;
+         var el, params;
 
          el = makeSVG('g');
 

@@ -37,7 +37,7 @@ return function(Graphic) {
       accept: function(v) {
          return v.visitPoints(this);
       },
-      physicalParams: function()  {
+      physicalParams: function() {
          return {
             points: utils.zipxy(this.x, this.y)
                      .map(this.toPhysicalCoords.bind(this))
