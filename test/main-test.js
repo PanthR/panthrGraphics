@@ -56,7 +56,11 @@ require(["../graphic"], function(Graphic) {
    );
    console.log("SVG render and insert took:", new Date() - d, "ms");
 
-   console.log(Graphic.Settings.defaults());
+   var s1 = Graphic.Settings.new().settings;
+   var s2 = Graphic.Settings.new().settings;
+   console.log(s1);
+   s1["add.line"].alpha[0] = s1["add.line"].alpha[0] + 1;
+   console.log(s1["add.line"].alpha[0], s2["add.line"].alpha[0]);
 
    var f = function(x) { return 0.1* Math.sin(2*x) + 0.5; };
 

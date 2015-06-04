@@ -321,8 +321,11 @@ define(function(require) {
     * Can specify an existing `theme` to inherit from.
     */
    Settings = newClass(function init(theme) {
-      this.settings = {}; // Object for new settings
       // TODO: Access the theme
+      if (!theme) { theme = defaults; }
+
+      this.settings = {}; // Object for new settings
+      mixin.deep(this.settings, theme);
    });
 
    mixin(Settings, {
