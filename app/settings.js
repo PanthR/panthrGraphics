@@ -436,6 +436,13 @@ define(function(require) {
       get: function(key, nItems) {
          if (arguments.length <= 1) { nItems = 1; }
          return recycle(followPath(key, this.settings), nItems);
+      },
+      /**
+       * Like `get`, but returns only the n-th value (or 1st if `n` is omitted).
+       */
+      getnth: function(key, n) {
+         if (arguments.length <= 1) { n = 1; }
+         return getSingleValues(followPath(key, this.settings), n);
       }
    });
 
@@ -483,6 +490,17 @@ define(function(require) {
       });
       return this;
    }
+
+   function getSingleValues(settings, n) {
+      var o = {};
+      if (Array.isArray(settings)) {
+         return settings[n % settings.length];
+      }
+      Object.keys(settings).forEach(function(key) {
+         o[key] = getSingleValues(settings[key], n);
+      });
+      return o;
+    }
 
    function recycle(settings, nItems) {
       if (Array.isArray(settings)) {
