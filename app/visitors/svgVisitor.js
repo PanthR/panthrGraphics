@@ -30,8 +30,11 @@ define(function(require) {
          p.coords.map(concatCoords).join(',');
    }
 
-   SVGVisitor = newClass(function init() {
-
+   /**
+    * Needs to be provided an actual settings object.
+    */
+   SVGVisitor = newClass(function init(settings) {
+      this.settings = settings;
    });
 
    mixin(SVGVisitor.prototype, {

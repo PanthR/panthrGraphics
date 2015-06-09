@@ -52,7 +52,7 @@ require(["../graphic"], function(Graphic) {
 
    var d = new Date();
    document.body.appendChild(
-      Graphic.Visitor.toSVG.new().visit(w)
+      Graphic.Visitor.toSVG.new(Graphic.Settings.new()).visit(w)
    );
    console.log("SVG render and insert took:", new Date() - d, "ms");
 
