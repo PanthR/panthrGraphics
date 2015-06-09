@@ -51,61 +51,61 @@ define(function(require) {
          return el;
       },
       visitSegments: function(o) {
-         var el, params, points;
+         var el, attrs, points;
 
-         params = {};
+         attrs = {};
 
          points = o.physicalParams().points;
 
          el = makeSVG('path');
 
-         params.d = points.map(function(p) {
+         attrs.d = points.map(function(p) {
             return 'M ' + p.x0 + ' ' + p.y0 +
                   ' L ' + p.x1 + ' ' + p.y1;
          }).join(' ');
 
-         params.style = 'fill:none;stroke:blue;stroke-width:1';
-         set(el, params);
+         attrs.style = 'fill:none;stroke:blue;stroke-width:1';
+         set(el, attrs);
 
          return el;
       },
       visitPath: function(o) {
-         var el, params;
+         var el, attrs;
 
          el = makeSVG('path');
 
-         params = {
+         attrs = {
             d: o.physicalParams()
                 .map(pathPointToString).join(' '),
             fill: 'transparent',
             stroke: 'black'
          };
 
-         set(el, params);
+         set(el, attrs);
 
          return el;
       },
       visitPolyline: function(o) {
-         var el, params;
+         var el, attrs;
 
          el = makeSVG('polyline');
 
-         params = o.physicalParams();
-         params.style = 'fill:none;stroke:purple;stroke-width:1';
-         params.points = pointsToString(params.points);
-         set(el, params);
+         attrs = o.physicalParams();
+         attrs.style = 'fill:none;stroke:purple;stroke-width:1';
+         attrs.points = pointsToString(attrs.points);
+         set(el, attrs);
 
          return el;
       },
       visitRect: function(o) {
-         var el, params;
+         var el, attrs;
 
          el = makeSVG('g');
 
          // TODO: Style should be more generally specified somewhere
-         params = {};
-         params.style = 'fill:transparent;stroke:red;stroke-width:1';
-         set(el, params);
+         attrs = {};
+         attrs.style = 'fill:transparent;stroke:red;stroke-width:1';
+         set(el, attrs);
          o.physicalParams().points.forEach(function(p) {
             var rect = makeSVG('rect');
             set(rect, {
@@ -120,38 +120,38 @@ define(function(require) {
          return el;
       },
       visitSector: function(o) {
-         var el, params, d, distAngle, largeArc;
+         var el, attrs, d, distAngle, largeArc;
 
          el = makeSVG('path');
 
          // TODO: Style should be more generally specified somewhere
-         params = o.physicalParams();
+         attrs = o.physicalParams();
 
-         distAngle = params.ea - params.ba;
+         distAngle = attrs.ea - attrs.ba;
          largeArc = distAngle >= 0.5 ||
                      distAngle <= 0 && distAngle >= -0.5 ? 1 : 0;
 
          if (Math.abs(distAngle) >= 1) {
             // Draw full circle
-            params.e.x = 2 * params.c.x - params.b.x;
-            params.e.y = 2 * params.c.y - params.b.y;
-            d = 'M' + concatCoords(params.b) +
-                ' A ' + params.rx + ' ' + params.ry +
+            attrs.e.x = 2 * attrs.c.x - attrs.b.x;
+            attrs.e.y = 2 * attrs.c.y - attrs.b.y;
+            d = 'M' + concatCoords(attrs.b) +
+                ' A ' + attrs.rx + ' ' + attrs.ry +
                 ' 0 ' +
                 ' ' + largeArc + ' ' + 1 +
-                concatCoords(params.e) +
-                ' A ' + params.rx + ' ' + params.ry +
+                concatCoords(attrs.e) +
+                ' A ' + attrs.rx + ' ' + attrs.ry +
                 ' 0 ' +
                 ' ' + largeArc + ' ' + 1 +
-                concatCoords(params.b) +
+                concatCoords(attrs.b) +
                 ' Z';
          } else {
-            d = 'M' + concatCoords(params.c) +
-                ' L' + concatCoords(params.b) +
-                ' A ' + params.rx + ' ' + params.ry +
+            d = 'M' + concatCoords(attrs.c) +
+                ' L' + concatCoords(attrs.b) +
+                ' A ' + attrs.rx + ' ' + attrs.ry +
                 ' 0 ' +
                 ' ' + largeArc + ' ' + 1 +
-                concatCoords(params.e) +
+                concatCoords(attrs.e) +
                 ' Z';
          }
 
@@ -177,22 +177,22 @@ define(function(require) {
          console.log('Visiting Text');
       },
       visitPoints: function(o) {
-         var el, params;
+         var el, attrs;
 
          el = makeSVG('g');
 
          // TODO: Style should be more generally specified somewhere
-         params = {
+         attrs = {
             style: 'fill:black',
             r: '3'
          };
 
-         set(el, params);
+         set(el, attrs);
 
          o.physicalParams().points.forEach(function(p) {
             var point = makeSVG('circle');
 
-            set(point, { cx: p.x, cy: p.y, r: params.r });
+            set(point, { cx: p.x, cy: p.y, r: attrs.r });
             el.appendChild(point);
          });
 
