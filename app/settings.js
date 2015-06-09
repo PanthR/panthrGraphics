@@ -10,158 +10,183 @@ define(function(require) {
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
 
+   /* eslint-disable camelcase */
    defaults = {
-      'grid.pars': [],
-      'fontsize': {
-         'text': [ 12 ],
-         'points': [ 8 ]
+      grid: {
+         pars: []
       },
-      'background': {
-         'alpha': [ 1 ],
-         'col': [ 'transparent' ]
+      fontsize: {
+         text: [ 12 ],
+         points: [ 8 ]
       },
-      'panel.background': {
-         'col': [ 'transparent' ]
+      background: {
+         alpha: [ 1 ],
+         col: [ 'transparent' ]
       },
-      'clip': {
-         'panel': [ 'on' ],
-         'strip': [ 'on' ]
+      panel: {
+         background: {
+            col: [ 'transparent' ]
+         }
       },
-      'add.line': {
-         'alpha': [ 1 ],
-         'col': [ '#000000' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
+      clip: {
+         panel: [ 'on' ],
+         strip: [ 'on' ]
       },
-      'add.text': {
-         'alpha': [ 1 ],
-         'cex': [ 1 ],
-         'col': [ '#000000' ],
-         'font': [ 1 ],
-         'lineheight': [ 1.2 ]
+      add: {
+         line: {
+            alpha: [ 1 ],
+            col: [ '#000000' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         },
+         text: {
+            alpha: [ 1 ],
+            cex: [ 1 ],
+            col: [ '#000000' ],
+            font: [ 1 ],
+            lineheight: [ 1.2 ]
+         }
       },
-      'plot.polygon': {
-         'alpha': [ 1 ],
-         'col': [ '#00ffff' ],
-         'border': [ 'black' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
+      box: {
+         dot: {
+            alpha: [ 1 ],
+            col: [ '#000000' ],
+            cex: [ 1 ],
+            font: [ 1 ],
+            pch: [ 16 ]
+         },
+         rectangle: {
+            alpha: [ 1 ],
+            col: [ '#0080ff' ],
+            fill: [ 'transparent' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         },
+         umbrella: {
+            alpha: [ 1 ],
+            col: [ '#0080ff' ],
+            lty: [ 2 ],
+            lwd: [ 1 ]
+         },
+         '3d': {
+            alpha: [ 1 ],
+            col: [ '#000000' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         }
       },
-      'box.dot': {
-         'alpha': [ 1 ],
-         'col': [ '#000000' ],
-         'cex': [ 1 ],
-         'font': [ 1 ],
-         'pch': [ 16 ]
+      dot: {
+         line: {
+            alpha: [ 1 ],
+            col: [ '#e6e6e6' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         },
+         symbol: {
+            alpha: [ 1 ],
+            cex: [ 0.8 ],
+            col: [ '#0080ff' ],
+            font: [ 1 ],
+            pch: [ 16 ]
+         }
       },
-      'box.rectangle': {
-         'alpha': [ 1 ],
-         'col': [ '#0080ff' ],
-         'fill': [ 'transparent' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
+      plot: {
+         polygon: {
+            alpha: [ 1 ],
+            col: [ '#00ffff' ],
+            border: [ 'black' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         },
+         line: {
+            alpha: [ 1 ],
+            col: [ '#0080ff' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         },
+         symbol: {
+            alpha: [ 1 ],
+            cex: [ 0.8 ],
+            col: [ '#0080ff' ],
+            font: [ 1 ],
+            pch: [ 1 ],
+            fill: [ 'transparent' ]
+         }
       },
-      'box.umbrella': {
-         'alpha': [ 1 ],
-         'col': [ '#0080ff' ],
-         'lty': [ 2 ],
-         'lwd': [ 1 ]
+      reference: {
+         line: {
+            alpha: [ 1 ],
+            col: [ '#e6e6e6' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         }
       },
-      'dot.line': {
-         'alpha': [ 1 ],
-         'col': [ '#e6e6e6' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
+      strip: {
+         background: {
+            alpha: [ 1 ],
+            col: [
+               '#ffe5cc', '#ccffcc', '#ccffff', '#cce6ff',
+               '#ffccff', '#ffcccc', '#ffffcc'
+            ]
+         },
+         shingle: {
+            alpha: [ 1 ],
+            col: [
+               '#ff7f00', '#00ff00', '#00ffff', '#0080ff',
+               '#ff00ff', '#ff0000', '#ffff00'
+            ]
+         },
+         border: {
+            alpha: [ 1 ],
+            col: [
+               '#000000', '#000000', '#000000', '#000000',
+               '#000000', '#000000', '#000000'
+            ],
+            lty: [ 1, 1, 1, 1, 1, 1, 1 ],
+            lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
+         }
       },
-      'dot.symbol': {
-         'alpha': [ 1 ],
-         'cex': [ 0.8 ],
-         'col': [ '#0080ff' ],
-         'font': [ 1 ],
-         'pch': [ 16 ]
+      superpose: {
+         line: {
+            alpha: [ 1 ],
+            col: [
+               '#0080ff', '#ff00ff', 'darkgreen', '#ff0000',
+               'orange', '#00ff00', 'brown'
+            ],
+            lty: [ 1, 1, 1, 1, 1, 1, 1 ],
+            lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
+         },
+         symbol: {
+            alpha: [ 1, 1, 1, 1, 1, 1, 1 ],
+            cex: [ 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8 ],
+            col: [
+               '#0080ff', '#ff00ff', 'darkgreen', '#ff0000',
+               'orange', '#00ff00', 'brown'
+            ],
+            fill: [
+               '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
+               '#CCE6FF', '#FFFFCC', '#FFCCCC'
+            ],
+            font: [ 1, 1, 1, 1, 1, 1, 1 ],
+            pch: [ 1, 1, 1, 1, 1, 1, 1 ]
+         },
+         polygon: {
+            alpha: [ 1, 1, 1, 1, 1, 1, 1 ],
+            col: [
+               '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
+               '#CCE6FF', '#FFFFCC', '#FFCCCC'
+            ],
+            border: [
+               'black', 'black', 'black', 'black',
+               'black', 'black', 'black'
+            ],
+            lty: [ 1, 1, 1, 1, 1, 1, 1 ],
+            lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
+         }
       },
-      'plot.line': {
-         'alpha': [ 1 ],
-         'col': [ '#0080ff' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
-      },
-      'plot.symbol': {
-         'alpha': [ 1 ],
-         'cex': [ 0.8 ],
-         'col': [ '#0080ff' ],
-         'font': [ 1 ],
-         'pch': [ 1 ],
-         'fill': [ 'transparent' ]
-      },
-      'reference.line': {
-         'alpha': [ 1 ],
-         'col': [ '#e6e6e6' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
-      },
-      'strip.background': {
-         'alpha': [ 1 ],
-         'col': [
-            '#ffe5cc', '#ccffcc', '#ccffff', '#cce6ff',
-            '#ffccff', '#ffcccc', '#ffffcc'
-         ]
-      },
-      'strip.shingle': {
-         'alpha': [ 1 ],
-         'col': [
-            '#ff7f00', '#00ff00', '#00ffff', '#0080ff',
-            '#ff00ff', '#ff0000', '#ffff00'
-         ]
-      },
-      'strip.border': {
-         'alpha': [ 1 ],
-         'col': [
-            '#000000', '#000000', '#000000', '#000000',
-            '#000000', '#000000', '#000000'
-         ],
-         'lty': [ 1, 1, 1, 1, 1, 1, 1 ],
-         'lwd': [ 1, 1, 1, 1, 1, 1, 1 ]
-      },
-      'superpose.line': {
-         'alpha': [ 1 ],
-         'col': [
-            '#0080ff', '#ff00ff', 'darkgreen', '#ff0000',
-            'orange', '#00ff00', 'brown'
-         ],
-         'lty': [ 1, 1, 1, 1, 1, 1, 1 ],
-         'lwd': [ 1, 1, 1, 1, 1, 1, 1 ]
-      },
-      'superpose.symbol': {
-         'alpha': [ 1, 1, 1, 1, 1, 1, 1 ],
-         'cex': [ 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8 ],
-         'col': [
-            '#0080ff', '#ff00ff', 'darkgreen', '#ff0000',
-            'orange', '#00ff00', 'brown'
-         ],
-         'fill': [
-            '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
-            '#CCE6FF', '#FFFFCC', '#FFCCCC'
-         ],
-         'font': [ 1, 1, 1, 1, 1, 1, 1 ],
-         'pch': [ 1, 1, 1, 1, 1, 1, 1 ]
-      },
-      'superpose.polygon': {
-         'alpha': [ 1, 1, 1, 1, 1, 1, 1 ],
-         'col': [
-            '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
-            '#CCE6FF', '#FFFFCC', '#FFCCCC'
-         ],
-         'border': [
-            'black', 'black', 'black', 'black',
-            'black', 'black', 'black'
-         ],
-         'lty': [ 1, 1, 1, 1, 1, 1, 1 ],
-         'lwd': [ 1, 1, 1, 1, 1, 1, 1 ]
-      },
-      'regions': {
-         'alpha': [ 1 ],
-         'col': [
+      regions: {
+         alpha: [ 1 ],
+         col: [
             '#FF80FFFF', '#FF82FFFF', '#FF85FFFF', '#FF87FFFF',
             '#FF8AFFFF', '#FF8CFFFF', '#FF8FFFFF', '#FF91FFFF',
             '#FF94FFFF', '#FF96FFFF', '#FF99FFFF', '#FF9CFFFF',
@@ -189,136 +214,140 @@ define(function(require) {
             '#87FFFFFF', '#85FFFFFF', '#82FFFFFF', '#80FFFFFF'
          ]
       },
-      'shade.colors': {
-         'alpha': [ 1 ],
-         'palette': [
-            'function (irr, ref, height, saturation = 0.9) ',
-            '{',
-            '    hsv(h = height, s = 1 - saturation * (1 - (1 - ref)^0.5), ',
-            '        v = irr)',
-            '}'
-         ]
-      },
-      'axis.line': {
-         'alpha': [ 1 ],
-         'col': [ '#000000' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
-      },
-      'axis.text': {
-         'alpha': [ 1 ],
-         'cex': [ 0.8 ],
-         'col': [ '#000000' ],
-         'font': [ 1 ],
-         'lineheight': [ 1 ]
-      },
-      'axis.components': {
-         'left': {
-            'tck': [ 1 ],
-            'pad1': [ 1 ],
-            'pad2': [ 1 ]
-         },
-         'top': {
-            'tck': [ 1 ],
-            'pad1': [ 1 ],
-            'pad2': [ 1 ]
-         },
-         'right': {
-            'tck': [ 1 ],
-            'pad1': [ 1 ],
-            'pad2': [ 1 ]
-         },
-         'bottom': {
-            'tck': [ 1 ],
-            'pad1': [ 1 ],
-            'pad2': [ 1 ]
+      shade: {
+         colors: {
+            alpha: [ 1 ],
+            palette: [
+               'function (irr, ref, height, saturation = 0.9) ',
+               '{',
+               '    hsv(h = height, s = 1 - saturation * (1 - (1 - ref)^0.5), ',
+               '        v = irr)',
+               '}'
+            ]
          }
       },
-      'layout.heights': {
-         'top.padding': [ 1 ],
-         'main': [ 1 ],
-         'main.key.padding': [ 1 ],
-         'key.top': [ 1 ],
-         'xlab.top': [ 1 ],
-         'key.axis.padding': [ 1 ],
-         'axis.top': [ 1 ],
-         'strip': [ 1 ],
-         'panel': [ 1 ],
-         'axis.panel': [ 1 ],
-         'between': [ 1 ],
-         'axis.bottom': [ 1 ],
-         'axis.xlab.padding': [ 1 ],
-         'xlab': [ 1 ],
-         'xlab.key.padding': [ 0 ],
-         'key.bottom': [ 1 ],
-         'key.sub.padding': [ 1 ],
-         'sub': [ 1 ],
-         'bottom.padding': [ 1 ]
+      axis: {
+         line: {
+            alpha: [ 1 ],
+            col: [ '#000000' ],
+            lty: [ 1 ],
+            lwd: [ 1 ]
+         },
+         text: {
+            alpha: [ 1 ],
+            cex: [ 0.8 ],
+            col: [ '#000000' ],
+            font: [ 1 ],
+            lineheight: [ 1 ]
+         },
+         components: {
+            left: {
+               tck: [ 1 ],
+               pad1: [ 1 ],
+               pad2: [ 1 ]
+            },
+            top: {
+               tck: [ 1 ],
+               pad1: [ 1 ],
+               pad2: [ 1 ]
+            },
+            right: {
+               tck: [ 1 ],
+               pad1: [ 1 ],
+               pad2: [ 1 ]
+            },
+            bottom: {
+               tck: [ 1 ],
+               pad1: [ 1 ],
+               pad2: [ 1 ]
+            }
+         }
       },
-      'layout.widths': {
-         'left.padding': [ 1 ],
-         'key.left': [ 1 ],
-         'key.ylab.padding': [ 0 ],
-         'ylab': [ 1 ],
-         'ylab.axis.padding': [ 1 ],
-         'axis.left': [ 1 ],
-         'axis.panel': [ 1 ],
-         'strip.left': [ 1 ],
-         'panel': [ 1 ],
-         'between': [ 1 ],
-         'axis.right': [ 1 ],
-         'axis.key.padding': [ 1 ],
-         'ylab.right': [ 1 ],
-         'key.right': [ 1 ],
-         'right.padding': [ 1 ]
+      layout: {
+         heights: {
+            top_padding: [ 1 ],
+            bottom_padding: [ 1 ],
+            main: [ 1 ],
+            main_key_padding: [ 1 ],
+            axis_top: [ 1 ],
+            axis_panel: [ 1 ],
+            axis_bottom: [ 1 ],
+            axis_xlab_padding: [ 1 ],
+            strip: [ 1 ],
+            panel: [ 1 ],
+            between: [ 1 ],
+            xlab_top: [ 1 ],
+            xlab: [ 1 ],
+            xlab_key_padding: [ 0 ],
+            key_top: [ 1 ],
+            key_axis_padding: [ 1 ],
+            key_bottom: [ 1 ],
+            key_sub_padding: [ 1 ],
+            sub: [ 1 ]
+         },
+         widths: {
+            left_padding: [ 1 ],
+            right_padding: [ 1 ],
+            key_left: [ 1 ],
+            key_ylab_padding: [ 0 ],
+            key_right: [ 1 ],
+            ylab: [ 1 ],
+            ylab_axis_padding: [ 1 ],
+            ylab_right: [ 1 ],
+            strip_left: [ 1 ],
+            panel: [ 1 ],
+            between: [ 1 ],
+            axis_left: [ 1 ],
+            axis_panel: [ 1 ],
+            axis_right: [ 1 ],
+            axis_key_padding: [ 1 ]
+         }
       },
-      'box.3d': {
-         'alpha': [ 1 ],
-         'col': [ '#000000' ],
-         'lty': [ 1 ],
-         'lwd': [ 1 ]
-      },
-      'par.xlab.text': {
-         'alpha': [ 1 ],
-         'cex': [ 1 ],
-         'col': [ '#000000' ],
-         'font': [ 1 ],
-         'lineheight': [ 1 ]
-      },
-      'par.ylab.text': {
-         'alpha': [ 1 ],
-         'cex': [ 1 ],
-         'col': [ '#000000' ],
-         'font': [ 1 ],
-         'lineheight': [ 1 ]
-      },
-      'par.zlab.text': {
-         'alpha': [ 1 ],
-         'cex': [ 1 ],
-         'col': [ '#000000' ],
-         'font': [ 1 ],
-         'lineheight': [ 1 ]
-      },
-      'par.main.text': {
-         'alpha': [ 1 ],
-         'cex': [ 1.2 ],
-         'col': [ '#000000' ],
-         'font': [ 2 ],
-         'lineheight': [ 1 ]
-      },
-      'par.sub.text': {
-         'alpha': [ 1 ],
-         'cex': [ 1 ],
-         'col': [ '#000000' ],
-         'font': [ 2 ],
-         'lineheight': [ 1 ]
+      par: {
+         xlab_text: {
+            alpha: [ 1 ],
+            cex: [ 1 ],
+            col: [ '#000000' ],
+            font: [ 1 ],
+            lineheight: [ 1 ]
+         },
+         ylab_text: {
+            alpha: [ 1 ],
+            cex: [ 1 ],
+            col: [ '#000000' ],
+            font: [ 1 ],
+            lineheight: [ 1 ]
+         },
+         zlab_text: {
+            alpha: [ 1 ],
+            cex: [ 1 ],
+            col: [ '#000000' ],
+            font: [ 1 ],
+            lineheight: [ 1 ]
+         },
+         main_text: {
+            alpha: [ 1 ],
+            cex: [ 1.2 ],
+            col: [ '#000000' ],
+            font: [ 2 ],
+            lineheight: [ 1 ]
+         },
+         sub_text: {
+            alpha: [ 1 ],
+            cex: [ 1 ],
+            col: [ '#000000' ],
+            font: [ 2 ],
+            lineheight: [ 1 ]
+         }
       }
    };
+   /* eslint-enable camelcase */
 
    /*
     * Create a new settings/theme object.
     *
-    * Can specify an existing `theme` to inherit from.
+    * Can specify an existing `theme` to inherit from. If no theme
+    * specified, then a default theme will be used.
     */
    Settings = newClass(function init(theme) {
       // TODO: Access the theme
@@ -362,19 +391,36 @@ define(function(require) {
       },
       /*
        * sets values for settings keys.
-       * Helper methods should turn dot-separated options
-       * to appropriate nested objects
+       *
+       * Can be called with 1 or 2 arguments. If called with two
+       * arguments, the first argument is assumed to be a dot-separated
+       * string specifying an initial 'path'.
+       * The other (or only) argument is a single value, array or object
+       * specifying the values to use to replace the old values at that
+       * point in the path.
+       *
+       * Examples:
+       *     theme.set('add.line.lty', 3);
+       *     theme.set('add.line', { lty: 3 });
+       *     theme.set('add', { line: { lty: 3 }});
+       *     theme.set({ add: { line: { lty: [1, 3] }}});
        */
       set: function(key, value) {
+         // Convert all example cases to the last one.
+         value = arguments.length > 1 ?
+            key.split('.').reverse().reduce(wrapInKey, value) :
+            key;
 
+         setValues(this.settings, value);
+         return this;
       },
       /*
        * gets values for settings.
        * Helper methods should turn dot-separated options
        * to appropriate nested objects
        *
-       * - `key` is a dot-separated list of the path to the desired
-       * items.
+       * - `key` is a dot-separated list (as a string) of the path to
+       * the desired items.
        * - `nItems` is the number of values to be retrieved. It defaults
        * to 1. If it is more than 1, then arrays of that length are
        * returned instead of numbers at the final options. If not enough
@@ -388,12 +434,87 @@ define(function(require) {
        * `nItems`.
        */
       get: function(key, nItems) {
-
+         if (arguments.length <= 1) { nItems = 1; }
+         return recycle(followPath(key, this.settings), nItems);
       }
    });
 
 
    // Helper methods
+
+   /*
+    * `path` is a dot-separated string of object keys. These keys
+    * are followed in the object `o` and the resulting value is
+    * returned.
+    */
+   function followPath(path, o) {
+      path.split('.').forEach(function(k) {
+         if (!o.hasOwnProperty(k)) {
+            throw new Error('Unknown settings ', path, 'at', k);
+         }
+         o = o[k];
+      });
+
+      return o;
+   }
+
+   function wrapInKey(v, k) {
+      var o = {};
+      o[k] = v;
+
+      return o;
+   }
+
+   function setValues(current, newValues) {
+      Object.keys(newValues).forEach(function(k) {
+         if (!current.hasOwnProperty(k)) {
+            throw new Error('Trying to set unknown option: ' + k);
+         }
+         if (isObject(newValues[k]) !== isObject(current[k])) {
+            throw new Error('Wrong option nesting at: ' + k);
+         }
+         if (isObject(newValues[k])) {
+            setValues(current[k], newValues[k]);
+         } else {
+            current[k] = Array.isArray(newValues[k]) ?
+                         newValues[k].slice() :
+                         [newValues[k]];
+         }
+      });
+      return this;
+   }
+
+   function recycle(settings, nItems) {
+      if (Array.isArray(settings)) {
+         return makeValue(settings, nItems);
+      }
+      if (typeof settings === 'object') {
+         return makeObject(settings, nItems);
+      }
+      return makeValue([settings], nItems);
+   }
+
+   function makeObject(settings, nItems) {
+      var o = {};
+      Object.keys(settings).forEach(function(key) {
+         o[key] = recycle(settings[key], nItems);
+      });
+      return o;
+   }
+
+   function makeValue(settings, nItems) {
+      var ret, i;
+      if (nItems === 1) {
+         ret = settings[0];
+      } else {
+         ret = [];
+         for (i = 0; i < nItems; i += 1) {
+            ret[i] = settings[i % settings.length];
+         }
+      }
+      return ret;
+   }
+
    function isObject(o) {
       return !Array.isArray(o) && typeof o === 'object';
    }

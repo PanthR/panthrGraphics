@@ -59,8 +59,19 @@ require(["../graphic"], function(Graphic) {
    var s1 = Graphic.Settings.new().settings;
    var s2 = Graphic.Settings.new().settings;
    console.log(s1);
-   s1["add.line"].alpha[0] = s1["add.line"].alpha[0] + 1;
-   console.log(s1["add.line"].alpha[0], s2["add.line"].alpha[0]);
+   s1.add.line.alpha[0] = s1.add.line.alpha[0] + 1;
+   console.log(s1.add.line.alpha[0], s2.add.line.alpha[0]);
+   s1 = Graphic.Settings.new();
+   console.log(s1.get("add.line", 5));
+   console.log(s1.get("add.line.alpha", 5));
+   console.log(s1.get("add.line"));
+   console.log(s1.get("add.line.alpha"));
+   console.log(s1.set("add.line.alpha", [0.3, 0.2]));
+   console.log(s1.get("add.line.alpha", 5));
+   console.log(s1.set("add.line", { alpha: [0.2, 0.3] }));
+   console.log(s1.get("add.line.alpha", 5));
+   console.log(s1.set({ add: { line: { alpha: [0.1, 0.3] }}}));
+   console.log(s1.get("add.line.alpha", 5));
 
    var f = function(x) { return 0.1* Math.sin(2*x) + 0.5; };
 
