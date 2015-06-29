@@ -77,6 +77,17 @@ define(function(require) {
          mixin(this, o);
       },
       /*
+       * Takes as input a theme; combines that theme with a component's
+       * information to produce a single object of graphics parameters
+       * for displaying the component.
+       */
+      getThemeParams: function(theme) {
+         return mixin.existing(
+            theme.getnth(this.themeParamsPath,
+                         this.themeParamsIndex || 0),
+            this);
+      },
+      /*
        * Subclasses can override this method to add
        * code that should run after attribute updates
        */
