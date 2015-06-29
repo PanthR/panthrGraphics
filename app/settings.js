@@ -90,29 +90,6 @@ define(function(require) {
             pch: [ 16 ]
          }
       },
-      plot: {
-         polygon: {
-            alpha: [ 1 ],
-            col: [ '#00ffff' ],
-            border: [ 'black' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
-         },
-         line: {
-            alpha: [ 1 ],
-            col: [ '#0080ff' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
-         },
-         symbol: {
-            alpha: [ 1 ],
-            cex: [ 0.8 ],
-            col: [ '#0080ff' ],
-            font: [ 1 ],
-            pch: [ 1 ],
-            fill: [ 'transparent' ]
-         }
-      },
       reference: {
          line: {
             alpha: [ 1 ],
@@ -146,7 +123,7 @@ define(function(require) {
             lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
          }
       },
-      superpose: {
+      plot: {
          line: {
             alpha: [ 1 ],
             col: [
@@ -213,18 +190,6 @@ define(function(require) {
             '#91FFFFFF', '#8FFFFFFF', '#8CFFFFFF', '#8AFFFFFF',
             '#87FFFFFF', '#85FFFFFF', '#82FFFFFF', '#80FFFFFF'
          ]
-      },
-      shade: {
-         colors: {
-            alpha: [ 1 ],
-            palette: [
-               'function (irr, ref, height, saturation = 0.9) ',
-               '{',
-               '    hsv(h = height, s = 1 - saturation * (1 - (1 - ref)^0.5), ',
-               '        v = irr)',
-               '}'
-            ]
-         }
       },
       axis: {
          line: {
