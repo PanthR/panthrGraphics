@@ -30,7 +30,9 @@ return function(Graphic) {
    mixin(Point, {
       defaults: {
          x: [ 0.1 ],
-         y: [ 0.1 ]
+         y: [ 0.1 ],
+         themeParamsPath: 'plot.symbol',
+         themeParamsIndex: 0
       }
    });
    mixin(Point.prototype, {

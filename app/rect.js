@@ -31,10 +31,12 @@ define(function(require) {
    Rect = newClass(Component);
    mixin(Rect, {
       defaults: {
-        x0: [ 0.1 ],
-        y0: [ 0.1 ],
-        x1: [ 0.1 ],
-        y1: [ 0.1 ]
+         x0: [ 0.1 ],
+         y0: [ 0.1 ],
+         x1: [ 0.1 ],
+         y1: [ 0.1 ],
+         themeParamsPath: 'plot.polygon',
+         themeParamsIndex: 0
       }
    });
    mixin(Rect.prototype, {

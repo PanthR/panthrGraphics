@@ -22,7 +22,10 @@ define(function(require) {
     */
    Polyline = newClass(Component);
    mixin(Polyline, {
-      defaults: { }
+      defaults: {
+         themeParamsPath: 'plot.line',
+         themeParamsIndex: 0
+      }
    });
    mixin(Polyline.prototype, {
       accept: function(v) {

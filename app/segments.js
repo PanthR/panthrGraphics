@@ -26,7 +26,9 @@ define(function(require) {
          x0: [ 0.1 ],
          y0: [ 0.1 ],
          x1: [ 0.1 ],
-         y1: [ 0.1 ]
+         y1: [ 0.1 ],
+         themeParamsPath: 'plot.line',
+         themeParamsIndex: 0
       }
    });
    mixin(Segments.prototype, {

@@ -32,11 +32,13 @@ define(function(require) {
 
    mixin(Sector, {
       defaults: {
-        cx: 0.5,
-        cy: 0.5,
-        r: 3,
-        ba: 0, // Begin angle
-        ea: 1  // End angle
+         cx: 0.5,
+         cy: 0.5,
+         r: 3,
+         ba: 0, // Begin angle
+         ea: 1, // End angle
+         themeParamsPath: 'plot.polygon',
+         themeParamsIndex: 0
       }
    });
    mixin(Sector.prototype, {

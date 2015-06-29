@@ -34,7 +34,10 @@ define(function(require) {
       Component.prototype.initialize.apply(this, arguments);
    }, Component);
    mixin(Path, {
-      defaults: { },
+      defaults: {
+         themeParamsPath: 'plot.line',
+         themeParamsIndex: 0
+      },
       /**
        * Generates a Bezier curve for the function f(x) using
        * a total of n points (not counting control points)
