@@ -78,6 +78,7 @@ require(["../graphic"], function(Graphic) {
    var w = Graphic.Window.new().set({ px: 300, py: 300, xmax: 10, ymin: 1, ymax: 0 });
    var p = Graphic.Path.fromFunction(f, 1, 10, 20);
    w.append(p);
+   p.set('themeParamsIndex',1);
 
    var xs = [], ys= [];
    for (var x = 1; x < 9.1; x += 0.3) {
@@ -87,6 +88,6 @@ require(["../graphic"], function(Graphic) {
    w.append(Graphic.Points.new({ x: xs, y: ys, cex: 2 }));
 
    document.body.appendChild(
-      Graphic.Visitor.toSVG.new().visit(w)
+      Graphic.Visitor.toSVG.new(Graphic.Settings.new()).visit(w)
    );
 });

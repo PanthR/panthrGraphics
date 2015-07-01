@@ -28,6 +28,8 @@ define(function(require) {
     * - `lty`
     * - `lwd`
     * - `col`
+    * - `fill`: color to be used for "filling in" the corresponding region,
+    *     defaults to `transparent`
     */
    Path = newClass(function init() {
       this.points = [];

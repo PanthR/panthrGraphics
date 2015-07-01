@@ -18,6 +18,7 @@ define(function(require) {
       });
    }
 
+   // Helper Methods
    function pointToString(p) { return p.x + ',' + p.y; }
    function pointsToString(ps) {
       return ps.map(pointToString).join(' ');
@@ -28,6 +29,35 @@ define(function(require) {
    function pathPointToString(p) {
       return p.type + ' ' +
          p.coords.map(concatCoords).join(',');
+   }
+   // takes an integer code lty and creates the dasharray for SVG
+   function ltyToDasharray(lty) {
+      var arr = [
+         null,             // invisible
+         '',               // solid
+         '7, 3',           // dash
+         '2, 3',           // dot
+         '7, 3, 2, 3',     // dash-dot
+         '15, 3',          // long dash
+         '7, 3, 15, 3'     // dash-long-dash
+      ];
+      return arr[lty % arr.length];
+   }
+   function getLineSettings(settings) {
+      var o;
+      o = {
+         stroke:         settings.col,
+         fill:           'none',
+         'stroke-width': settings.lwd
+      };
+
+      if (settings.lty === 0) {
+         o['stroke-opacity'] = 0;
+      } else {
+         o['stroke-dasharray'] = ltyToDasharray(settings.lty);
+      }
+
+      return o;
    }
 
    /**
@@ -54,12 +84,12 @@ define(function(require) {
          return el;
       },
       visitSegments: function(o) {
-         var el, attrs, points;
+         var el, attrs, points, themeParams;
 
          attrs = {};
 
          points = o.physicalParams().points;
-
+         themeParams = o.getThemeParams(this.settings);
          el = makeSVG('path');
 
          attrs.d = points.map(function(p) {
@@ -67,23 +97,26 @@ define(function(require) {
                   ' L ' + p.x1 + ' ' + p.y1;
          }).join(' ');
 
-         attrs.style = 'fill:none;stroke:blue;stroke-width:1';
+         mixin(attrs, getLineSettings(themeParams));
+
          set(el, attrs);
 
          return el;
       },
       visitPath: function(o) {
-         var el, attrs;
+         var el, attrs, themeParams;
+         console.log(this);
+         themeParams = o.getThemeParams(this.settings);
 
          el = makeSVG('path');
 
          attrs = {
             d: o.physicalParams()
                 .map(pathPointToString).join(' '),
-            fill: 'transparent',
-            stroke: 'black'
+            fill: themeParams.fill || 'transparent'
          };
 
+         mixin(attrs, getLineSettings(themeParams));
          set(el, attrs);
 
          return el;
