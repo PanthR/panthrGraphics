@@ -22,15 +22,15 @@ require(["../graphic"], function(Graphic) {
       y1s.push(Math.random());
    }
    w.append(Graphic.Rect.new({
-      x0: x0s, y0: y0s, x1: x1s, y1: y1s
+      x0: x0s, y0: y0s, x1: x1s, y1: y1s, col: 'transparent'
    }));
    w.append(Graphic.Segments.new({
       x0: x0s, y0: y0s, x1: x1s, y1: y1s
    }));
    w.append(Graphic.Polyline.new({
-      x: x0s, y: y1s
+      x: x0s, y: y1s, lty: 4, themeParamsIndex: 1
    }));
-   var ps = Graphic.Points.new({ x: x0s, y: y0s, cex: 2 });
+   var ps = Graphic.Points.new({ x: x0s, y: y0s });
    w.append(ps);
    w.append(Graphic.Sector.new({
       cx: 0.5,
@@ -79,13 +79,35 @@ require(["../graphic"], function(Graphic) {
    var p = Graphic.Path.fromFunction(f, 1, 10, 20);
    w.append(p);
    p.set('themeParamsIndex',1);
+   p.set('lty',5);
+   p.set('fill','blue');
 
    var xs = [], ys= [];
    for (var x = 1; x < 9.1; x += 0.3) {
       xs.push(x);
       ys.push(f(x));
    }
-   w.append(Graphic.Points.new({ x: xs, y: ys, cex: 2 }));
+   w.append(Graphic.Points.new({ x: xs, y: ys, cex: 2, col: 'red' }));
+
+   // create a display of line types
+   var g = Graphic.Group.new().set({
+      transform: Graphic.Transform.scales(
+         Graphic.Scale.ident(),
+         Graphic.Scale.range(-0.5, 6.5, 0, 1)
+      )
+   });
+   w.append(g);
+
+   var i;
+   for (i = 0; i < 7; i += 1) {
+      g.append(Graphic.Segments.new({
+         x0: [0],
+         y0: [i],
+         x1: [10],
+         y1: [i],
+         lty: i
+      }));
+   }
 
    document.body.appendChild(
       Graphic.Visitor.toSVG.new(Graphic.Settings.new()).visit(w)

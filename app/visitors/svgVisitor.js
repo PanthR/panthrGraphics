@@ -35,19 +35,35 @@ define(function(require) {
       var arr = [
          null,             // invisible
          '',               // solid
-         '7, 3',           // dash
-         '2, 3',           // dot
-         '7, 3, 2, 3',     // dash-dot
-         '15, 3',          // long dash
-         '7, 3, 15, 3'     // dash-long-dash
+         '3, 2',           // dash
+         '1, 2',           // dot
+         '3, 2, 1, 2',     // dash-dot
+         '7, 2',          // long dash
+         '3, 2, 7, 2'     // dash-long-dash
       ];
       return arr[lty % arr.length];
    }
    function getLineSettings(settings) {
       var o;
       o = {
-         stroke:         settings.col,
-         fill:           'none',
+         stroke: settings.col,
+         'stroke-width': settings.lwd
+      };
+
+      if (settings.lty === 0) {
+         o['stroke-opacity'] = 0;
+      } else {
+         o['stroke-dasharray'] = ltyToDasharray(settings.lty);
+      }
+
+      return o;
+   }
+
+   function getRectSettings(settings) {
+      var o;
+      o = {
+         stroke: settings.border,
+         fill: settings.col,
          'stroke-width': settings.lwd
       };
 
@@ -105,7 +121,7 @@ define(function(require) {
       },
       visitPath: function(o) {
          var el, attrs, themeParams;
-         console.log(this);
+
          themeParams = o.getThemeParams(this.settings);
 
          el = makeSVG('path');
@@ -113,7 +129,7 @@ define(function(require) {
          attrs = {
             d: o.physicalParams()
                 .map(pathPointToString).join(' '),
-            fill: themeParams.fill || 'transparent'
+            fill: o.fill || themeParams.fill || 'transparent'
          };
 
          mixin(attrs, getLineSettings(themeParams));
@@ -122,26 +138,29 @@ define(function(require) {
          return el;
       },
       visitPolyline: function(o) {
-         var el, attrs;
+         var el, attrs, themeParams;
 
+         themeParams = o.getThemeParams(this.settings);
          el = makeSVG('polyline');
 
          attrs = o.physicalParams();
-         attrs.style = 'fill:none;stroke:purple;stroke-width:1';
          attrs.points = pointsToString(attrs.points);
+         attrs.fill = o.fill || themeParams.fill || 'transparent';
+         mixin(attrs, getLineSettings(themeParams));
+
          set(el, attrs);
 
          return el;
       },
       visitRect: function(o) {
-         var el, attrs;
+         var el, attrs, themeParams;
 
+         themeParams = o.getThemeParams(this.settings);
          el = makeSVG('g');
 
-         // TODO: Style should be more generally specified somewhere
-         attrs = {};
-         attrs.style = 'fill:transparent;stroke:red;stroke-width:1';
+         attrs = getRectSettings(themeParams);
          set(el, attrs);
+
          o.physicalParams().points.forEach(function(p) {
             var rect = makeSVG('rect');
             set(rect, {
@@ -156,11 +175,11 @@ define(function(require) {
          return el;
       },
       visitSector: function(o) {
-         var el, attrs, d, distAngle, largeArc;
+         var el, attrs, d, distAngle, largeArc, themeParams;
 
+         themeParams = o.getThemeParams(this.settings);
          el = makeSVG('path');
 
-         // TODO: Style should be more generally specified somewhere
          attrs = o.physicalParams();
 
          distAngle = attrs.ea - attrs.ba;
@@ -191,19 +210,15 @@ define(function(require) {
                 ' Z';
          }
 
-         set(el, {
-            style: 'fill:red;stroke:blue;stroke-width:1',
-            d: d
-         });
+         attrs = getRectSettings(themeParams);
+         attrs.d = d;
+         set(el, attrs);
 
          return el;
       },
       visitGroup: function(o) {
          var el = makeSVG('g');
-         set(el, {
-            // Will need to add here any settings that point provides
-            // to the whole group
-         });
+
          o.children.forEach(function(p) {
             el.appendChild(this.visit(p));
          }.bind(this));
@@ -213,14 +228,13 @@ define(function(require) {
          console.log('Visiting Text');
       },
       visitPoints: function(o) {
-         var el, attrs;
-
+         var el, attrs, themeParams;
+         themeParams = o.getThemeParams(this.settings);
          el = makeSVG('g');
 
-         // TODO: Style should be more generally specified somewhere
          attrs = {
-            style: 'fill:black',
-            r: '3'
+            fill: themeParams.col,
+            r: 3 * themeParams.cex
          };
 
          set(el, attrs);
@@ -232,10 +246,6 @@ define(function(require) {
             el.appendChild(point);
          });
 
-         return el;
-      },
-      visitLines: function(o) {
-         var el = makeSVG('g');
          return el;
       },
       visitCurve: function(o) {
