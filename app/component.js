@@ -17,7 +17,7 @@ define(function(require) {
     *
     */
    Component = newClass(function init(attrs) {
-      attrs = mixin({}, this.class.defaults, attrs);
+      attrs = mixin.deep({}, this.class.defaults, attrs);
       this.set(attrs);
    });
    mixin(Component.prototype, {
