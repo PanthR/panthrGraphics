@@ -225,7 +225,50 @@ define(function(require) {
          return el;
       },
       visitText: function(o) {
-         console.log('Visiting Text');
+         var el, attrs, themeParams, basefont;
+         themeParams = o.getThemeParams(this.settings);
+         el = makeSVG('g');
+
+         basefont = {
+            size: this.settings.get('font-size.text'),
+            family: this.settings.get('font-family.text')
+         };
+
+         attrs = {
+            fill: themeParams.col,
+            stroke: themeParams.col,
+            'font-size': themeParams.cex * basefont.size,
+            'font-family': basefont.family,
+            'font-style': themeParams['font-style'],
+            'font-weight': themeParams['font-weight'],
+            'text-anchor': 'middle',
+            'dominant-baseline': 'middle'
+         };
+
+         set(el, attrs);
+
+         o.physicalParams().forEach(function(p) {
+            var text, pars;
+
+            text = makeSVG('text');
+            pars = {
+               x: p.x,
+               y: p.y,
+               'dominant-baseline': 'inherit'
+            };
+            if (o.orientation === 'vertical') {
+               pars.transform = 'rotate(-90,' +
+                                 pars.x + ',' +
+                                 pars.y + ')';
+            }
+
+            set(text, pars);
+            text.textContent = p.text;
+            el.appendChild(text);
+         });
+
+         return el;
+
       },
       visitPoints: function(o) {
          var el, attrs, themeParams;

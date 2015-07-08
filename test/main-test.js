@@ -98,6 +98,22 @@ require(["../graphic"], function(Graphic) {
    });
    w.append(g);
 
+   g.append(Graphic.Text.new({
+      orientation: 'vertical',
+      x: [ 0.5 ],
+      y: [ 4 ],
+      text: [ 'vertical!' ],
+      cex: 2.5,
+      col: 'green',
+      'font-style': 'italic',
+      'font-weight': 'bold'
+   }));
+   g.append(Graphic.Text.new({
+      x: [ 5, 5, 5, 5, 5, 5, 5 ],
+      y: [ 0, 1, 2, 3, 4, 5, 6 ],
+      text: [ '0', '1', '2', '3', '4', '5', '6' ]
+   }));
+
    var i;
    for (i = 0; i < 7; i += 1) {
       g.append(Graphic.Segments.new({

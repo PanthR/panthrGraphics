@@ -15,12 +15,17 @@ define(function(require) {
       grid: {
          pars: []
       },
-      fontsize: {
+      'font-size': {
          text: [ 12 ],
          points: [ 8 ]
       },
+      'font-family': {
+         text: [ 'sans-serif' ],
+         points: [ 'sans-serif' ]
+      },
       background: {
          alpha: [ 1 ],
+         border: [ 'black' ],
          col: [ 'transparent' ]
       },
       panel: {
@@ -43,7 +48,8 @@ define(function(require) {
             alpha: [ 1 ],
             cex: [ 1 ],
             col: [ '#000000' ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1.2 ]
          }
       },
@@ -52,7 +58,8 @@ define(function(require) {
             alpha: [ 1 ],
             col: [ '#000000' ],
             cex: [ 1 ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             pch: [ 16 ]
          },
          rectangle: {
@@ -86,7 +93,8 @@ define(function(require) {
             alpha: [ 1 ],
             cex: [ 0.8 ],
             col: [ '#0080ff' ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             pch: [ 16 ]
          }
       },
@@ -144,7 +152,8 @@ define(function(require) {
                '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
                '#CCE6FF', '#FFFFCC', '#FFCCCC'
             ],
-            font: [ 1, 1, 1, 1, 1, 1, 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             pch: [ 1, 1, 1, 1, 1, 1, 1 ]
          },
          polygon: {
@@ -202,7 +211,8 @@ define(function(require) {
             alpha: [ 1 ],
             cex: [ 0.8 ],
             col: [ '#000000' ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
          },
          components: {
@@ -273,35 +283,40 @@ define(function(require) {
             alpha: [ 1 ],
             cex: [ 1 ],
             col: [ '#000000' ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
          },
          ylab_text: {
             alpha: [ 1 ],
             cex: [ 1 ],
             col: [ '#000000' ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
          },
          zlab_text: {
             alpha: [ 1 ],
             cex: [ 1 ],
             col: [ '#000000' ],
-            font: [ 1 ],
+            'font-weight': [ 'normal' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
          },
          main_text: {
             alpha: [ 1 ],
             cex: [ 1.2 ],
             col: [ '#000000' ],
-            font: [ 2 ],
+            'font-weight': [ 'bold' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
          },
          sub_text: {
             alpha: [ 1 ],
             cex: [ 1 ],
             col: [ '#000000' ],
-            font: [ 2 ],
+            'font-weight': [ 'bold' ],
+            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
          }
       }

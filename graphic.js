@@ -7,7 +7,7 @@ define(function(require) {
 
    var Graphic,        // Container for all Graphic related work
        // Abstract classes. Factories need to provide implementation.
-       Text, Curve, Color;
+       Curve, Color;
 
    Graphic = {};
 
@@ -28,7 +28,7 @@ define(function(require) {
    // A container for objects
    Graphic.Group = require('./app/group');
    // Text labels
-   Graphic.Text = Text;
+   Graphic.Text = require('./app/text');
 
    // Utility properties
    //
