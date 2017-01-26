@@ -7,6 +7,11 @@ define(function(require) {
    newClass = require('../lib/newClass');
    Composite = require('./composite');
 
+   /**
+    * Group Properties:
+    * @class Group
+    * @classdesc A type of composite that expects to be visited.
+    */
    Group = newClass(Composite);
 
    mixin(Group, {
