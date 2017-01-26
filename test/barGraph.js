@@ -42,7 +42,7 @@ require(['../graphic'], function(Graphic) {
       ymax: 0
    });
 
-   // bottom margin -- number of lines for margines should be settable
+   // bottom margin -- number of lines for margins should be settable
    var xbottom = Graphic.Group.new({
       transform: Graphic.Transform.scales(
          Graphic.Scale.range(info.xlim[0], info.xlim[1], info.margin.left, 1 - info.margin.right),
