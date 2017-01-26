@@ -72,8 +72,8 @@ define(function(require) {
             this.y
          );
       },
-      // Takes in a pair of coordinates as object
-      // returns a pair of coordinates as object
+      // Takes in a pair of coordinates as an object and
+      // returns the pair of transformed coordinates as an object
       pair: function(coords) {
          return {
             x: this.x(coords.x, coords.y),
