@@ -29,6 +29,14 @@ define(function(require) {
             snd
          );
       },
+      transpose: function() {
+         return Transform.new(
+            snd
+            fst,
+            snd,
+            fst
+         );
+      },
       scales: function(xscale, yscale) {
          return Transform.new(
             function(x, y) { return xscale.x(x); },
@@ -36,9 +44,26 @@ define(function(require) {
             function(x, y) { return xscale.invx(x); },
             function(x, y) { return yscale.invx(y); }
          );
+      },
+      // trans1 is applied first, followed by trans2
+      composite: function(trans1, trans2) {
+         return Transform.new(
+            function(x, y) { return trans2.x(trans1.x(x, y), trans1.y(x, y)); },
+            function(x, y) { return trans2.y(trans1.x(x, y), trans1.y(x, y)); },
+            function(x, y) { return trans1.invx(trans2.invx(x, y), trans2.invy(x, y)); },
+            function(x, y) { return trans1.invy(trans2.invx(x, y), trans2.invy(x, y)); }
+         );
       }
    });
    mixin(Transform.prototype, {
+      transpose: function() {
+         return Transform.new(
+            this.y,
+            this.x,
+            this.invy,
+            this.invx
+         );
+      },
       inverse: function() {
          return Transform.new(
             this.invx,
