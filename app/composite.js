@@ -1,7 +1,7 @@
 (function(define) {'use strict';
 define(function(require) {
 
-   var Composite, Component, Collection, Transform,
+   var Composite, Component, Collection, Transform, TransformCoords,
        mixin, newClass;
 
    mixin = require('../lib/mixin');
@@ -9,6 +9,7 @@ define(function(require) {
    Collection = require('../lib/collection');
    Component = require('./component');
    Transform = require('./transform');
+   TransformCoords = require('../lib/transformCoords');
 
    /**
     * Properties:
@@ -26,7 +27,7 @@ define(function(require) {
       Component.prototype.initialize.apply(this, arguments);
    }, Component);
 
-   mixin(Composite.prototype, Collection, {
+   mixin(Composite.prototype, Collection, TransformCoords, {
       insertAt: function(i, node) {
          Collection.insertAt.call(this, i, node);
          node.parent(this);
@@ -36,24 +37,6 @@ define(function(require) {
          Collection.remove.call(this, node);
          node.parent(null);
          return this;
-      },
-      toPhysicalCoords: function(coords) {
-         // null indicates we reached the window level
-         if (this.parent() == null) {
-            return this.transform.pair(coords);
-         }
-         return this.parent().toPhysicalCoords(
-            this.transform.pair(coords)
-         );
-      },
-      fromPhysicalCoords: function(coords) {
-         // null indicates we reached the window level
-         if (this.parent() == null) {
-            return this.transform.inverse().pair(coords);
-         }
-         return this.transform.inverse().pair(
-            this.parent().fromPhysicalCoords(coords)
-         );
       }
    });
 
