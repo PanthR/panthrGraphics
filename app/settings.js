@@ -46,12 +46,14 @@ define(function(require) {
             lwd: [1]
          },
          text: {
-            lineheight: [ 1.2 ]
             alpha: [1],
             cex: [1],
             col: ['#000000'],
             'font-weight': ['normal'],
             'font-style': ['normal'],
+            lineheight: [1.2],
+            hAlign: ['center'],
+            vAlign: ['center']
          }
       },
       box: {
@@ -209,13 +211,16 @@ define(function(require) {
             lwd: [1]
          },
          text: {
-            lineheight: [ 1 ]
             alpha: [1],
             cex: [0.8],
             col: ['#000000'],
             'font-weight': ['normal'],
             'font-style': ['normal'],
+            lineheight: [1],
+            hAlign: ['center'],
+            vAlign: ['center']
          },
+         // TODO: do we need these?
          components: {
             left: {
                tck: [1],
@@ -281,44 +286,54 @@ define(function(require) {
       },
       par: {
          xlab_text: {
-            lineheight: [ 1 ]
             alpha: [1],
             cex: [1],
             col: ['#000000'],
             'font-weight': ['normal'],
             'font-style': ['normal'],
+            lineheight: [1],
+            hAlign: ['center'],
+            vAlign: ['center']
          },
          ylab_text: {
-            lineheight: [ 1 ]
             alpha: [1],
             cex: [1],
             col: ['#000000'],
             'font-weight': ['normal'],
             'font-style': ['normal'],
+            lineheight: [1],
+            hAlign: ['center'],
+            vAlign: ['center']
          },
          zlab_text: {
-            lineheight: [ 1 ]
             alpha: [1],
             cex: [1],
             col: ['#000000'],
             'font-weight': ['normal'],
             'font-style': ['normal'],
+            lineheight: [1],
+            hAlign: ['center'],
+            vAlign: ['center']
          },
          main_text: {
-            lineheight: [ 1 ]
             alpha: [1],
             cex: [1.2],
             col: ['#000000'],
             'font-weight': ['bold'],
             'font-style': ['normal'],
+            lineheight: [1],
+            hAlign: ['center'],
+            vAlign: ['center']
          },
          sub_text: {
-            lineheight: [ 1 ]
             alpha: [1],
             cex: [1],
             col: ['#000000'],
             'font-weight': ['bold'],
             'font-style': ['normal'],
+            lineheight: [1],
+            hAlign: ['center'],
+            vAlign: ['center']
          }
       }
    };

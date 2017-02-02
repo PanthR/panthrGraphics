@@ -29,6 +29,8 @@ define(function(require) {
     * - `font-style`
     * - `cex`
     * - `font-family`
+    * - `hAlign`:  left, center, right
+    * - `vAlign`:  bottom, center, top
     */
    Text = newClass(Component);
    mixin(Text, {
@@ -37,7 +39,9 @@ define(function(require) {
          y: [0.1],
          orientation: 'horizontal',
          themeParamsPath: 'add.text',
-         themeParamsIndex: 0
+         themeParamsIndex: 0,
+         hAlign: 'center',
+         vAlign: 'center'
       }
    });
    mixin(Text.prototype, {

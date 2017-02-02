@@ -237,7 +237,7 @@ define(function(require) {
          return el;
       },
       visitText: function(o) {
-         var el, attrs, themeParams, basefont;
+         var el, attrs, themeParams, basefont, anchorNames, baselineNames;
 
          themeParams = o.getThemeParams(this.settings);
          el = makeSVG('g');
@@ -247,6 +247,18 @@ define(function(require) {
             family: this.settings.get('font-family.text')
          };
 
+         anchorNames = {
+            left: 'start',
+            center: 'middle',
+            right: 'end'
+         };
+
+         baselineNames = {
+            bottom: 'baseline',
+            center: 'middle',
+            top: 'hanging'
+         };
+
          attrs = {
             fill: themeParams.col,
             stroke: themeParams.col,
@@ -254,8 +266,8 @@ define(function(require) {
             'font-family': basefont.family,
             'font-style': themeParams['font-style'],
             'font-weight': themeParams['font-weight'],
-            'text-anchor': 'middle',
-            'dominant-baseline': 'middle'
+            'text-anchor': anchorNames[themeParams.hAlign],
+            'dominant-baseline': baselineNames[themeParams.vAlign]
          };
 
          set(el, attrs);
@@ -266,8 +278,7 @@ define(function(require) {
             text = makeSVG('text');
             pars = {
                x: p.x,
-               y: p.y,
-               'dominant-baseline': 'inherit'
+               y: p.y
             };
             if (o.orientation === 'vertical') {
                pars.transform = 'rotate(-90,' +
