@@ -58,6 +58,8 @@ define(function(require) {
 
    Graphic.Settings = require('./app/settings');
 
+   Graphic.Graph = require('./app/graph');
+
    return Graphic;
 });
 
