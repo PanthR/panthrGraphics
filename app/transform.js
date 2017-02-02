@@ -1,11 +1,11 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var Transform, mixin, newClass;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
-
 
    function fst(x, y) { return x; }
    function snd(x, y) { return y; }
@@ -31,7 +31,7 @@ define(function(require) {
       },
       transpose: function() {
          return Transform.new(
-            snd
+            snd,
             fst,
             snd,
             fst

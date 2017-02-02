@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    /*
@@ -16,162 +17,162 @@ define(function(require) {
          pars: []
       },
       'font-size': {
-         text: [ 12 ],
-         points: [ 8 ]
+         text: [12],
+         points: [8]
       },
       'font-family': {
-         text: [ 'sans-serif' ],
-         points: [ 'sans-serif' ]
+         text: ['sans-serif'],
+         points: ['sans-serif']
       },
       background: {
-         alpha: [ 1 ],
-         border: [ 'black' ],
-         col: [ 'transparent' ]
+         alpha: [1],
+         border: ['black'],
+         col: ['transparent']
       },
       panel: {
          background: {
-            col: [ 'transparent' ]
+            col: ['transparent']
          }
       },
       clip: {
-         panel: [ 'on' ],
-         strip: [ 'on' ]
+         panel: ['on'],
+         strip: ['on']
       },
       add: {
          line: {
-            alpha: [ 1 ],
-            col: [ '#000000' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#000000'],
+            lty: [1],
+            lwd: [1]
          },
          text: {
-            alpha: [ 1 ],
-            cex: [ 1 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1.2 ]
+            alpha: [1],
+            cex: [1],
+            col: ['#000000'],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
          }
       },
       box: {
          dot: {
-            alpha: [ 1 ],
-            col: [ '#000000' ],
-            cex: [ 1 ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
-            pch: [ 16 ]
+            alpha: [1],
+            col: ['#000000'],
+            cex: [1],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
+            pch: [16]
          },
          rectangle: {
-            alpha: [ 1 ],
-            col: [ '#0080ff' ],
-            fill: [ 'transparent' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#0080ff'],
+            fill: ['transparent'],
+            lty: [1],
+            lwd: [1]
          },
          umbrella: {
-            alpha: [ 1 ],
-            col: [ '#0080ff' ],
-            lty: [ 2 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#0080ff'],
+            lty: [2],
+            lwd: [1]
          },
          '3d': {
-            alpha: [ 1 ],
-            col: [ '#000000' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#000000'],
+            lty: [1],
+            lwd: [1]
          }
       },
       dot: {
          line: {
-            alpha: [ 1 ],
-            col: [ '#e6e6e6' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#e6e6e6'],
+            lty: [1],
+            lwd: [1]
          },
          symbol: {
-            alpha: [ 1 ],
-            cex: [ 0.8 ],
-            col: [ '#0080ff' ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
-            pch: [ 16 ]
+            alpha: [1],
+            cex: [0.8],
+            col: ['#0080ff'],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
+            pch: [16]
          }
       },
       reference: {
          line: {
-            alpha: [ 1 ],
-            col: [ '#e6e6e6' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#e6e6e6'],
+            lty: [1],
+            lwd: [1]
          }
       },
       strip: {
          background: {
-            alpha: [ 1 ],
+            alpha: [1],
             col: [
                '#ffe5cc', '#ccffcc', '#ccffff', '#cce6ff',
                '#ffccff', '#ffcccc', '#ffffcc'
-            ]
+           ]
          },
          shingle: {
-            alpha: [ 1 ],
+            alpha: [1],
             col: [
                '#ff7f00', '#00ff00', '#00ffff', '#0080ff',
                '#ff00ff', '#ff0000', '#ffff00'
-            ]
+           ]
          },
          border: {
-            alpha: [ 1 ],
+            alpha: [1],
             col: [
                '#000000', '#000000', '#000000', '#000000',
                '#000000', '#000000', '#000000'
-            ],
-            lty: [ 1, 1, 1, 1, 1, 1, 1 ],
-            lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
+           ],
+            lty: [1, 1, 1, 1, 1, 1, 1],
+            lwd: [1, 1, 1, 1, 1, 1, 1]
          }
       },
       plot: {
          line: {
-            alpha: [ 1 ],
+            alpha: [1],
             col: [
                '#0080ff', '#ff00ff', 'darkgreen', '#ff0000',
                'orange', '#00ff00', 'brown'
-            ],
-            lty: [ 1, 1, 1, 1, 1, 1, 1 ],
-            lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
+           ],
+            lty: [1, 1, 1, 1, 1, 1, 1],
+            lwd: [1, 1, 1, 1, 1, 1, 1]
          },
          symbol: {
-            alpha: [ 1, 1, 1, 1, 1, 1, 1 ],
-            cex: [ 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8 ],
+            alpha: [1, 1, 1, 1, 1, 1, 1],
+            cex: [0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8],
             col: [
                '#0080ff', '#ff00ff', 'darkgreen', '#ff0000',
                'orange', '#00ff00', 'brown'
-            ],
+           ],
             fill: [
                '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
                '#CCE6FF', '#FFFFCC', '#FFCCCC'
-            ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
-            pch: [ 1, 1, 1, 1, 1, 1, 1 ]
+           ],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
+            pch: [1, 1, 1, 1, 1, 1, 1]
          },
          polygon: {
-            alpha: [ 1, 1, 1, 1, 1, 1, 1 ],
+            alpha: [1, 1, 1, 1, 1, 1, 1],
             col: [
                '#CCFFFF', '#FFCCFF', '#CCFFCC', '#FFE5CC',
                '#CCE6FF', '#FFFFCC', '#FFCCCC'
-            ],
+           ],
             border: [
                'black', 'black', 'black', 'black',
                'black', 'black', 'black'
-            ],
-            lty: [ 1, 1, 1, 1, 1, 1, 1 ],
-            lwd: [ 1, 1, 1, 1, 1, 1, 1 ]
+           ],
+            lty: [1, 1, 1, 1, 1, 1, 1],
+            lwd: [1, 1, 1, 1, 1, 1, 1]
          }
       },
       regions: {
-         alpha: [ 1 ],
+         alpha: [1],
          col: [
             '#FF80FFFF', '#FF82FFFF', '#FF85FFFF', '#FF87FFFF',
             '#FF8AFFFF', '#FF8CFFFF', '#FF8FFFFF', '#FF91FFFF',
@@ -198,126 +199,126 @@ define(function(require) {
             '#9CFFFFFF', '#99FFFFFF', '#96FFFFFF', '#94FFFFFF',
             '#91FFFFFF', '#8FFFFFFF', '#8CFFFFFF', '#8AFFFFFF',
             '#87FFFFFF', '#85FFFFFF', '#82FFFFFF', '#80FFFFFF'
-         ]
+        ]
       },
       axis: {
          line: {
-            alpha: [ 1 ],
-            col: [ '#000000' ],
-            lty: [ 1 ],
-            lwd: [ 1 ]
+            alpha: [1],
+            col: ['#000000'],
+            lty: [1],
+            lwd: [1]
          },
          text: {
-            alpha: [ 1 ],
-            cex: [ 0.8 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
+            alpha: [1],
+            cex: [0.8],
+            col: ['#000000'],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
          },
          components: {
             left: {
-               tck: [ 1 ],
-               pad1: [ 1 ],
-               pad2: [ 1 ]
+               tck: [1],
+               pad1: [1],
+               pad2: [1]
             },
             top: {
-               tck: [ 1 ],
-               pad1: [ 1 ],
-               pad2: [ 1 ]
+               tck: [1],
+               pad1: [1],
+               pad2: [1]
             },
             right: {
-               tck: [ 1 ],
-               pad1: [ 1 ],
-               pad2: [ 1 ]
+               tck: [1],
+               pad1: [1],
+               pad2: [1]
             },
             bottom: {
-               tck: [ 1 ],
-               pad1: [ 1 ],
-               pad2: [ 1 ]
+               tck: [1],
+               pad1: [1],
+               pad2: [1]
             }
          }
       },
       layout: {
          heights: {
-            top_padding: [ 1 ],
-            bottom_padding: [ 1 ],
-            main: [ 1 ],
-            main_key_padding: [ 1 ],
-            axis_top: [ 1 ],
-            axis_panel: [ 1 ],
-            axis_bottom: [ 1 ],
-            axis_xlab_padding: [ 1 ],
-            strip: [ 1 ],
-            panel: [ 1 ],
-            between: [ 1 ],
-            xlab_top: [ 1 ],
-            xlab: [ 1 ],
-            xlab_key_padding: [ 0 ],
-            key_top: [ 1 ],
-            key_axis_padding: [ 1 ],
-            key_bottom: [ 1 ],
-            key_sub_padding: [ 1 ],
-            sub: [ 1 ]
+            top_padding: [1],
+            bottom_padding: [1],
+            main: [1],
+            main_key_padding: [1],
+            axis_top: [1],
+            axis_panel: [1],
+            axis_bottom: [1],
+            axis_xlab_padding: [1],
+            strip: [1],
+            panel: [1],
+            between: [1],
+            xlab_top: [1],
+            xlab: [1],
+            xlab_key_padding: [0],
+            key_top: [1],
+            key_axis_padding: [1],
+            key_bottom: [1],
+            key_sub_padding: [1],
+            sub: [1]
          },
          widths: {
-            left_padding: [ 1 ],
-            right_padding: [ 1 ],
-            key_left: [ 1 ],
-            key_ylab_padding: [ 0 ],
-            key_right: [ 1 ],
-            ylab: [ 1 ],
-            ylab_axis_padding: [ 1 ],
-            ylab_right: [ 1 ],
-            strip_left: [ 1 ],
-            panel: [ 1 ],
-            between: [ 1 ],
-            axis_left: [ 1 ],
-            axis_panel: [ 1 ],
-            axis_right: [ 1 ],
-            axis_key_padding: [ 1 ]
+            left_padding: [1],
+            right_padding: [1],
+            key_left: [1],
+            key_ylab_padding: [0],
+            key_right: [1],
+            ylab: [1],
+            ylab_axis_padding: [1],
+            ylab_right: [1],
+            strip_left: [1],
+            panel: [1],
+            between: [1],
+            axis_left: [1],
+            axis_panel: [1],
+            axis_right: [1],
+            axis_key_padding: [1]
          }
       },
       par: {
          xlab_text: {
-            alpha: [ 1 ],
-            cex: [ 1 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
+            alpha: [1],
+            cex: [1],
+            col: ['#000000'],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
          },
          ylab_text: {
-            alpha: [ 1 ],
-            cex: [ 1 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
+            alpha: [1],
+            cex: [1],
+            col: ['#000000'],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
          },
          zlab_text: {
-            alpha: [ 1 ],
-            cex: [ 1 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'normal' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
+            alpha: [1],
+            cex: [1],
+            col: ['#000000'],
+            'font-weight': ['normal'],
+            'font-style': ['normal'],
          },
          main_text: {
-            alpha: [ 1 ],
-            cex: [ 1.2 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'bold' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
+            alpha: [1],
+            cex: [1.2],
+            col: ['#000000'],
+            'font-weight': ['bold'],
+            'font-style': ['normal'],
          },
          sub_text: {
-            alpha: [ 1 ],
-            cex: [ 1 ],
-            col: [ '#000000' ],
-            'font-weight': [ 'bold' ],
-            'font-style': [ 'normal' ],
             lineheight: [ 1 ]
+            alpha: [1],
+            cex: [1],
+            col: ['#000000'],
+            'font-weight': ['bold'],
+            'font-style': ['normal'],
          }
       }
    };
@@ -387,9 +388,11 @@ define(function(require) {
        */
       set: function(key, value) {
          // Convert all example cases to the last one.
-         value = arguments.length > 1 ?
-            key.split('.').reverse().reduce(wrapInKey, value) :
-            key;
+         if (arguments.length > 1) {
+            value = key.split('.').reverse().reduce(wrapInKey, value);
+         } else {
+            value = key;
+         }
 
          setValues(this.settings, value);
          return this;
@@ -426,7 +429,6 @@ define(function(require) {
       }
    });
 
-
    // Helper methods
 
    /*
@@ -446,7 +448,9 @@ define(function(require) {
    }
 
    function wrapInKey(v, k) {
-      var o = {};
+      var o;
+
+      o = {};
       o[k] = v;
 
       return o;
@@ -462,23 +466,27 @@ define(function(require) {
          }
          if (isObject(newValues[k])) {
             setValues(current[k], newValues[k]);
+         } else if (Array.isArray(newValues[k])) {
+            current[k] = newValues[k].slice();
          } else {
-            current[k] = Array.isArray(newValues[k]) ?
-                         newValues[k].slice() :
-                         [newValues[k]];
+            current[k] = [newValues[k]];
          }
       });
+
       return this;
    }
 
    function getSingleValues(settings, n) {
-      var o = {};
+      var o;
+
+      o = {};
       if (Array.isArray(settings)) {
          return settings[n % settings.length];
       }
       Object.keys(settings).forEach(function(key) {
          o[key] = getSingleValues(settings[key], n);
       });
+
       return o;
     }
 
@@ -489,19 +497,24 @@ define(function(require) {
       if (typeof settings === 'object') {
          return makeObject(settings, nItems);
       }
+
       return makeValue([settings], nItems);
    }
 
    function makeObject(settings, nItems) {
-      var o = {};
+      var o;
+
+      o = {};
       Object.keys(settings).forEach(function(key) {
          o[key] = recycle(settings[key], nItems);
       });
+
       return o;
    }
 
    function makeValue(settings, nItems) {
       var ret, i;
+
       if (nItems === 1) {
          ret = settings[0];
       } else {
@@ -510,6 +523,7 @@ define(function(require) {
             ret[i] = settings[i % settings.length];
          }
       }
+
       return ret;
    }
 

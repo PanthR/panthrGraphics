@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
 // Defines Graphic Singleton.
@@ -45,7 +46,6 @@ define(function(require) {
    Graphic.Scale = require('./app/scale');
    // 2d coordinate transformations
    Graphic.Transform = require('./app/transform');
-
 
    // Derived Objects that do not need independent implementation
    // Sequence of "statistical" points.

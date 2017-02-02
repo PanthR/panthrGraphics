@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var Segments, Component, mixin, newClass, utils;
@@ -23,10 +24,10 @@ define(function(require) {
    Segments = newClass(Component);
    mixin(Segments, {
       defaults: {
-         x0: [ 0.1 ],
-         y0: [ 0.1 ],
-         x1: [ 0.1 ],
-         y1: [ 0.1 ],
+         x0: [0.1],
+         y0: [0.1],
+         x1: [0.1],
+         y1: [0.1],
          themeParamsPath: 'plot.line',
          themeParamsIndex: 0
       }

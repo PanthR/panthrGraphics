@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var ns, SVGVisitor, mixin, newClass;
@@ -32,7 +33,9 @@ define(function(require) {
    }
    // takes an integer code lty and creates the dasharray for SVG
    function ltyToDasharray(lty) {
-      var arr = [
+      var arr;
+
+      arr = [
          null,             // invisible
          '',               // solid
          '3, 2',           // dash
@@ -41,10 +44,12 @@ define(function(require) {
          '7, 2',          // long dash
          '3, 2, 7, 2'     // dash-long-dash
       ];
+
       return arr[lty % arr.length];
    }
    function getLineSettings(settings) {
       var o;
+
       o = {
          stroke: settings.col,
          'stroke-width': settings.lwd
@@ -61,6 +66,7 @@ define(function(require) {
 
    function getRectSettings(settings) {
       var o;
+
       o = {
          stroke: settings.border,
          fill: settings.col,
@@ -88,10 +94,12 @@ define(function(require) {
          return o.accept(this);
       },
       visitWindow: function(o) {
-         var el = makeSVG('svg');
+         var el;
+
+         el = makeSVG('svg');
          set(el, {
-            'width': o.px,
-            'height': o.py
+            width: o.px,
+            height: o.py
          });
          o.children.forEach(function(c) {
             el.appendChild(this.visit(c));
@@ -162,7 +170,9 @@ define(function(require) {
          set(el, attrs);
 
          o.physicalParams().points.forEach(function(p) {
-            var rect = makeSVG('rect');
+            var rect;
+
+            rect = makeSVG('rect');
             set(rect, {
                x: Math.min(p.x0, p.x1),
                y: Math.min(p.y0, p.y1),
@@ -217,15 +227,18 @@ define(function(require) {
          return el;
       },
       visitGroup: function(o) {
-         var el = makeSVG('g');
+         var el;
 
+         el = makeSVG('g');
          o.children.forEach(function(p) {
             el.appendChild(this.visit(p));
          }.bind(this));
+
          return el;
       },
       visitText: function(o) {
          var el, attrs, themeParams, basefont;
+
          themeParams = o.getThemeParams(this.settings);
          el = makeSVG('g');
 
@@ -272,6 +285,7 @@ define(function(require) {
       },
       visitPoints: function(o) {
          var el, attrs, themeParams;
+
          themeParams = o.getThemeParams(this.settings);
          el = makeSVG('g');
 
@@ -283,8 +297,9 @@ define(function(require) {
          set(el, attrs);
 
          o.physicalParams().points.forEach(function(p) {
-            var point = makeSVG('circle');
+            var point;
 
+            point = makeSVG('circle');
             set(point, { cx: p.x, cy: p.y, r: attrs.r });
             el.appendChild(point);
          });
@@ -295,7 +310,6 @@ define(function(require) {
          console.log('Visiting Curve');
       }
    });
-
 
    return SVGVisitor;
 

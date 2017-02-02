@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var Scale, mixin, newClass;
@@ -16,7 +17,7 @@ define(function(require) {
    });
    // linear scale from [a, b] to [c, d]
    function range(a, b, c, d) {
-      return linear( (d - c) / (b - a), a, c);
+      return linear((d - c) / (b - a), a, c);
    }
    function linear(m, x0, y0) {
       return function(x) { return y0 + m * (x - x0); };

@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var Sector, Component, mixin, newClass;
@@ -86,7 +87,6 @@ define(function(require) {
             rx: rx,
             ry: ry
          };
-
 
          return ret;
       }

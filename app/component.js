@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var Component, mixin, newClass;
@@ -17,7 +18,9 @@ define(function(require) {
     *
     */
    Component = newClass(function init(attrs) {
-      var newAttrs = mixin.deep({}, this.class.defaults);
+      var newAttrs;
+
+      newAttrs = mixin.deep({}, this.class.defaults);
       mixin(newAttrs, attrs);
 
       this.set(newAttrs);
@@ -61,9 +64,13 @@ define(function(require) {
          }
 
          this._parent = newParent || null;
+
+         return this;
       },
       set: function(attrs) {
-         var o = attrs;
+         var o;
+
+         o = attrs;
          if (typeof attrs === 'string') {
             o = {};
             o[attrs] = arguments[1];

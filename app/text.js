@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+'use strict';
 define(function(require) {
 
    var Text, Component, mixin, newClass;
@@ -32,8 +33,8 @@ define(function(require) {
    Text = newClass(Component);
    mixin(Text, {
       defaults: {
-         x: [ 0.1 ],
-         y: [ 0.1 ],
+         x: [0.1],
+         y: [0.1],
          orientation: 'horizontal',
          themeParamsPath: 'add.text',
          themeParamsIndex: 0
@@ -45,8 +46,11 @@ define(function(require) {
       },
       physicalParams: function() {
          return this.text.map(function(text, i) {
-            var o = this.toPhysicalCoords({ x: this.x[i], y: this.y[i] });
+            var o;
+
+            o = this.toPhysicalCoords({ x: this.x[i], y: this.y[i] });
             o.text = text;
+
             return o;
          }.bind(this));
       }

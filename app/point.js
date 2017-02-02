@@ -1,4 +1,5 @@
-(function(define) {'use strict';
+(function(define) {
+  'use strict';
 define(function(require) {
 
 return function(Graphic) {
@@ -29,8 +30,8 @@ return function(Graphic) {
    Point = newClass(Component);
    mixin(Point, {
       defaults: {
-         x: [ 0.1 ],
-         y: [ 0.1 ],
+         x: [0.1],
+         y: [0.1],
          themeParamsPath: 'plot.symbol',
          themeParamsIndex: 0
       }
