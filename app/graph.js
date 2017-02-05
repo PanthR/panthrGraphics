@@ -50,7 +50,10 @@ define(function(require) {
          // respect to marginLines array
          marginLines: [5, 4, 4, 2],
          // marginSize is a proportion of the whole graph
-         marginSizes: [0.18, 0.18, 0.18, 0.06]
+         marginSizes: [0.18, 0.18, 0.18, 0.06],
+         // xlim and ylim define scaling for main region
+         xlim: [0, 1],
+         ylim: [0, 1]
       },
       make: {
          // required attributes for an axis are: min, max, ticks, labels
@@ -144,10 +147,10 @@ define(function(require) {
 
          attr = mixin(
             {
-               bottom: { vAlign: 'top' },
-               top: { vAlign: 'bottom' },
-               left: { hAlign: 'right' },
-               right: { hAlign: 'left' }
+               bottom: { vAlign: 'top', min: this.xlim[0], max: this.xlim[1] },
+               top: { vAlign: 'bottom', min: this.xlim[0], max: this.xlim[1] },
+               left: { hAlign: 'right', min: this.ylim[0], max: this.ylim[1] },
+               right: { hAlign: 'left', min: this.ylim[0], max: this.ylim[1] }
             }[margin], // default text alignment settings
             attr
          );
@@ -241,8 +244,10 @@ define(function(require) {
             }),
             main: Group.new({
                transform: Transform.scales(
-                  Scale.range(0, 1, this.marginSizes[1], 1 - this.marginSizes[3]),
-                  Scale.range(0, 1, this.marginSizes[0], 1 - this.marginSizes[2])
+                  Scale.range(this.xlim[0], this.xlim[1],
+                              this.marginSizes[1], 1 - this.marginSizes[3]),
+                  Scale.range(this.ylim[0], this.ylim[1],
+                              this.marginSizes[0], 1 - this.marginSizes[2])
                )
             })
          };
