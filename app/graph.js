@@ -2,7 +2,7 @@
 'use strict';
 define(function(require) {
 
-   var Graph, Component, Group, Transform, Scale, Segments, Text, mixin, newClass;
+   var Graph, Component, Group, Transform, Scale, Segments, Text, Rect, mixin, newClass;
 
    mixin = require('../lib/mixin');
    newClass = require('../lib/newClass');
@@ -12,6 +12,7 @@ define(function(require) {
    Scale = require('./scale');
    Segments = require('./segments');
    Text = require('./text');
+   Rect = require('./rect');
 
    /**
     * @class Graph
@@ -107,6 +108,17 @@ define(function(require) {
 
             return axisGroup;
          },
+         // returns a function to make bars for a bar graph or histogram, etc.
+         // required attributes for making bars are:
+         //    - `x0`, `y0`, `x1`, `y1`: Must be arrays of the same length
+         // optional attributes:
+         //    - `lty`
+         //    - `lwd`
+         //    - `col` = fill color
+         //    - `border_col`
+         bars: function(attr) {
+            return Rect.new(attr);
+         },
          legend: function(attr) {
 
          },
@@ -156,6 +168,46 @@ define(function(require) {
          );
 
          return this.addGraphElement(Graph.make.axis(attr), margin);
+      },
+      // draws "bar graph" bars in the main region based on the settings
+      //    in the attributes object
+      // Requires equal-length arrays of midpoints, heights, and
+      //    widths.
+      // Optional parameter, an array `starts` for starting the bars
+      //    higher than 0, which defaults to [0].
+      // Optional parameter, `direction` (a string), either 'vertical'
+      //    or 'horizontal', which defaults to vertical.
+      // Also accepts all valid attributes for drawing rectangles.
+      addBars: function(attr) {
+         var x0, x1, y0, y1;   // for vertical bar, picture x0 as left end of base
+
+         x0 = attr.midpoints.map(function(m, i) {
+            return m - attr.widths[i] / 2;
+         });
+         x1 = attr.midpoints.map(function(m, i) {
+            return m + attr.widths[i] / 2;
+         });
+         y0 = attr.hasOwnProperty('starts') ? attr.starts
+            : attr.heights.map(function() { return 0; });
+         y1 = attr.heights.map(function(h, i) {
+            return y0[i] + h;
+         });
+
+         if (attr.direction === 'horizontal') {
+            attr.x0 = y0;
+            attr.x1 = y1;
+            attr.y0 = x0;
+            attr.y1 = x1;
+         } else {
+            attr.x0 = x0;
+            attr.x1 = x1;
+            attr.y0 = y0;
+            attr.y1 = y1;
+         }
+
+         this.addGraphElement(Graph.make.bars(attr));
+
+         return this;
       },
       // Create a new label and add it to the specified margin
       // `attr` is an object of attributes for the label, including
