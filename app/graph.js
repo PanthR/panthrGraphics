@@ -209,6 +209,35 @@ define(function(require) {
 
          return this;
       },
+      // draws histogram bars based on an array of `xs` and an array
+      // of `heights` (one fewer height than `xs`)
+      // Optional parameter, `direction` (a string), either 'vertical'
+      //    or 'horizontal', which defaults to vertical.
+      // Also accepts all valid attributes for drawing rectangles.
+      addHistBars: function(attr) {
+         var x0, x1, y0, y1;   // for vertical bar, picture x0 as left end of base
+
+         x0 = attr.xs.slice(0, attr.xs.length - 1);
+         x1 = attr.xs.slice(1, attr.xs.length);
+         y0 = attr.heights.map(function() { return 0; });
+         y1 = attr.heights;
+
+         if (attr.direction === 'horizontal') {
+            attr.x0 = y0;
+            attr.x1 = y1;
+            attr.y0 = x0;
+            attr.y1 = x1;
+         } else {
+            attr.x0 = x0;
+            attr.x1 = x1;
+            attr.y0 = y0;
+            attr.y1 = y1;
+         }
+
+         this.addGraphElement(Graph.make.bars(attr));
+
+         return this;
+      },
       // Create a new label and add it to the specified margin
       // `attr` is an object of attributes for the label, including
       // `text` (required), `line` (optional), and other formatting
