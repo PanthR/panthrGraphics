@@ -10,11 +10,7 @@ require.config({
 require(['../graphic'], function(Graphic) {
    var w = Graphic.Window.new({
       px: 400,
-      py: 400,
-      xmin: 0,
-      xmax: 1,
-      ymin: 1,
-      ymax: 0
+      py: 400
    });
 
    var g = Graphic.Graph.new({ xlim: [-1, 22], ylim: [0, 32] });

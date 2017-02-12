@@ -24,16 +24,18 @@ define(function(require) {
       defaults: {
          px: 100, py: 100, // Physical dimensions of window (in pixels)
          xmin: 0, xmax: 1, // "virtual" coordinates.
-         ymin: 0, ymax: 1
+         ymin: 0, ymax: 1,
+         yorigin: "bottom" // the alternative is "top" for native graphics
       }
    });
    mixin(Window.prototype, {
       attr: function(o) {
          mixin(this, o);
-         // TODO: Ideally should check if transform is needed
          this.transform = Transform.scales(
             Scale.range(this.xmin, this.xmax, 0, this.px),
-            Scale.range(this.ymin, this.ymax, 0, this.py)
+            this.yorigin === "bottom" ?
+                 Scale.range(this.ymax, this.ymin, 0, this.py)
+               : Scale.range(this.ymin, this.ymax, 0, this.py)
          );
       },
       accept: function(v) {

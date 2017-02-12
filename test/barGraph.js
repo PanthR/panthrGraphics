@@ -11,10 +11,7 @@ require(['../graphic'], function(Graphic) {
    var w = Graphic.Window.new({
       px: 400,
       py: 400,
-      xmin: 0,
-      xmax: 1,
-      ymin: 1,
-      ymax: 0
+      yorigin: "top"
    });
 
    var g = Graphic.Graph.new({ xlim: [0, 6], ylim: [0, 22] });
